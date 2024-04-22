@@ -1,18 +1,22 @@
 package Pizzeria;
 
-public class Pizza {
+import java.io.Serializable;
+
+public class Pizza implements Serializable {
+		/**
+	 * 
+	 */
+		private static final long serialVersionUID = -4275725730997264355L;
 		private String dough, sauce, topping;
 		private Double diameter;
 		private int amount;
-		private boolean coupon;
 		
-		public Pizza(String dough, String sauce, String topping, Double diameter, int amount, boolean coupon) {
+		public Pizza(String dough, String sauce, String topping, Double diameter, int amount) {
 			this.dough = dough;
 			this.sauce = sauce;
 			this.topping = topping;
 			this.diameter = diameter;
 			this.amount = amount;
-			this.coupon = coupon;
 	}
 		//setter
 		public void setDough(String newD) {
@@ -30,9 +34,6 @@ public class Pizza {
 		public void setAmount(int newA) {
 			amount=newA;
 		}
-		public void setCoupon(boolean newC) {
-			coupon=newC;
-		}
 		
 		//getter
 		public String getDough() {
@@ -44,14 +45,12 @@ public class Pizza {
 		public String getTopping() {
 			return topping;
 		}
-		public Double getDiamater() {
+		public Double getDiameter() {
 			return diameter;
 		}
 		public int getAmount() {
 			return amount;
 		}
-		public boolean isCoupon() {
-			return coupon;
-		}
+
 		
 }
