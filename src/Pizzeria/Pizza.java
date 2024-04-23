@@ -9,15 +9,13 @@ public class Pizza implements Serializable {
 		private static final long serialVersionUID = -4275725730997264355L;
 		private String crust, sauce;
 		private String topping[];
-		private Double diameter;
-		private int amount;
+		private int diameter;
 		
-		public Pizza(String crust, String sauce, String[] topping, Double diameter, int amount) {
+		public Pizza(String crust, String sauce, String[] topping, int diameter) {
 			this.crust = crust;
 			this.sauce = sauce;
 			this.topping = topping;
 			this.diameter = diameter;
-			this.amount = amount;
 	}
 		//setter
 		public void setCrust(String newD) {
@@ -29,12 +27,10 @@ public class Pizza implements Serializable {
 		public void setTopping(String[] newT) {
 			topping=newT;
 		}
-		public void setDiameter(Double newD) {
+		public void setDiameter(int newD) {
 			diameter=newD;
 		}
-		public void setAmount(int newA) {
-			amount=newA;
-		}
+		
 		
 		//getter
 		public String getCrust() {
@@ -46,12 +42,10 @@ public class Pizza implements Serializable {
 		public String[] getTopping() {
 			return topping;
 		}
-		public Double getDiameter() {
+		public int getDiameter() {
 			return diameter;
 		}
-		public int getAmount() {
-			return amount;
-		}
+
 
 		
 }

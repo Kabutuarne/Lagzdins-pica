@@ -18,6 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JSlider;
+import javax.swing.JTextField;
+import javax.swing.JCheckBox;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class PizzaMain extends JFrame {
 
@@ -28,6 +33,11 @@ public class PizzaMain extends JFrame {
 	private JPanel savedInfoPanel;
 	private JPanel orderHistoryPanel;
 	private JPanel orderPanel2;
+	private JTextField txtName;
+	private JTextField txtSurname;
+	private JTextField textAddress1;
+	private JTextField textAddress2;
+	private JTextField txtPostal;
 
 	/**
 	 * Launch the application.
@@ -110,6 +120,36 @@ public class PizzaMain extends JFrame {
 		orderPanel1 = new JPanel();
 		orderPanel1.setLayout(null);
 		layeredPane.add(orderPanel1, "name_4048253304074500");
+		
+		JLabel toppingLayer3lbl_4 = new JLabel("3");
+		toppingLayer3lbl_4.setHorizontalAlignment(SwingConstants.CENTER);
+		toppingLayer3lbl_4.setBounds(428, 375, 40, 40);
+		orderPanel1.add(toppingLayer3lbl_4);
+		
+		JLabel toppingLayer3lbl = new JLabel("3");
+		toppingLayer3lbl.setHorizontalAlignment(SwingConstants.CENTER);
+		toppingLayer3lbl.setBounds(335, 269, 40, 40);
+		orderPanel1.add(toppingLayer3lbl);
+		
+		JLabel toppingLayer3lbl_1 = new JLabel("3");
+		toppingLayer3lbl_1.setHorizontalAlignment(SwingConstants.CENTER);
+		toppingLayer3lbl_1.setBounds(250, 341, 40, 40);
+		orderPanel1.add(toppingLayer3lbl_1);
+		
+		JLabel toppingLayer3lbl_2 = new JLabel("3");
+		toppingLayer3lbl_2.setHorizontalAlignment(SwingConstants.CENTER);
+		toppingLayer3lbl_2.setBounds(402, 314, 40, 40);
+		orderPanel1.add(toppingLayer3lbl_2);
+		
+		JLabel toppingLayer3lbl_3 = new JLabel("3");
+		toppingLayer3lbl_3.setHorizontalAlignment(SwingConstants.CENTER);
+		toppingLayer3lbl_3.setBounds(322, 356, 40, 40);
+		orderPanel1.add(toppingLayer3lbl_3);
+		
+		JLabel toppingLayer3lbl_5 = new JLabel("3");
+		toppingLayer3lbl_5.setHorizontalAlignment(SwingConstants.CENTER);
+		toppingLayer3lbl_5.setBounds(345, 454, 40, 40);
+		orderPanel1.add(toppingLayer3lbl_5);
 		
 		JLabel toppingLayer1lbl = new JLabel("1");
 		toppingLayer1lbl.setHorizontalAlignment(SwingConstants.CENTER);
@@ -346,6 +386,25 @@ public class PizzaMain extends JFrame {
 		topping3Choice.add(topping3_2);
 		topping3Choice.add(topping3_3);
 		
+		JSlider sizeSlider = new JSlider();
+		sizeSlider.setFont(new Font("Hot Slice", Font.PLAIN, 18));
+		sizeSlider.setPaintLabels(true);
+		sizeSlider.setMajorTickSpacing(6);
+		sizeSlider.setPaintTicks(true);
+		sizeSlider.setPaintTrack(false);
+		sizeSlider.setValue(21);
+		sizeSlider.setSnapToTicks(true);
+		sizeSlider.setMaximum(33);
+		sizeSlider.setMinorTickSpacing(6);
+		sizeSlider.setMinimum(21);
+		sizeSlider.setBounds(335, 165, 148, 59);
+		orderPanel1.add(sizeSlider);
+		
+		JLabel sizeLbl = new JLabel("Pizza Size");
+		sizeLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
+		sizeLbl.setBounds(213, 191, 116, 33);
+		orderPanel1.add(sizeLbl);
+		
 		
 		JButton nextBtn = new JButton("Next");
 		nextBtn.addActionListener(new ActionListener() {
@@ -421,26 +480,48 @@ public class PizzaMain extends JFrame {
 				
 				if(!aintSelected) {
 					if(!isStuffed) {
-						Pizza yummyPizza = new Pizza(crust, sauce, toppingsArray, -1.0, -1);
+						Pizza yummyPizza = new Pizza(crust, sauce, toppingsArray, sizeSlider.getValue());
 					}else {
 						if(cheese1Rdbtn.isSelected())
 							filling="Cheese";
 						else
 							filling="Double-Cheese";
-						StuffedCrustPizza yummyPizza = new StuffedCrustPizza(crust, sauce, toppingsArray, -1.0, -1,filling);
+						
+						StuffedCrustPizza yummyPizza = new StuffedCrustPizza(crust, sauce, toppingsArray, sizeSlider.getValue(),filling);
 					}
 						
 					switchPanels(orderPanel2);
 				}
 			}
 		});
-		nextBtn.setFont(new Font("Hot Slice", Font.ITALIC, 33));
+		nextBtn.setFont(new Font("Hot Slice", Font.ITALIC, 30));
 		nextBtn.setBounds(30, 495, 116, 40);
 		orderPanel1.add(nextBtn);
 		
 		orderPanel2 = new JPanel();
 		orderPanel2.setLayout(null);
 		layeredPane.add(orderPanel2, "name_4048253355859500");
+		
+		JLabel yourOrderLbl = new JLabel("Your Order");
+		yourOrderLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		yourOrderLbl.setFont(new Font("Hot Slice", Font.BOLD, 40));
+		yourOrderLbl.setBounds(178, 0, 176, 51);
+		orderPanel2.add(yourOrderLbl);
+		
+		JRadioButton deliverRdbtn1 = new JRadioButton("Ship to Address");
+		deliverRdbtn1.setFont(new Font("Hot Slice", Font.PLAIN, 18));
+		deliverRdbtn1.setBounds(32, 115, 134, 23);
+		orderPanel2.add(deliverRdbtn1);
+		
+		JRadioButton deliverRdbtn = new JRadioButton("Pick up at Store");
+		deliverRdbtn.setFont(new Font("Hot Slice", Font.PLAIN, 18));
+		deliverRdbtn.setBounds(32, 89, 134, 23);
+		orderPanel2.add(deliverRdbtn);
+		
+		JLabel deliverLbl = new JLabel("Delivery Option");
+		deliverLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
+		deliverLbl.setBounds(32, 49, 151, 33);
+		orderPanel2.add(deliverLbl);
 		
 		orderHistoryPanel = new JPanel();
 		orderHistoryPanel.setLayout(null);
@@ -449,6 +530,96 @@ public class PizzaMain extends JFrame {
 		savedInfoPanel = new JPanel();
 		savedInfoPanel.setLayout(null);
 		layeredPane.add(savedInfoPanel, "name_4048253442632400");
+		ButtonGroup deliverChoice = new ButtonGroup();
+		deliverChoice.add(deliverRdbtn);
+		deliverChoice.add(deliverRdbtn1);
+		
+		txtName = new JTextField();
+		txtName.setToolTipText("");
+		txtName.setFont(new Font("Hot Slice", Font.PLAIN, 20));
+		txtName.setBounds(32, 191, 104, 23);
+		orderPanel2.add(txtName);
+		txtName.setColumns(10);
+		
+		txtSurname = new JTextField();
+		txtSurname.setToolTipText("");
+		txtSurname.setFont(new Font("Hot Slice", Font.PLAIN, 20));
+		txtSurname.setColumns(10);
+		txtSurname.setBounds(32, 235, 104, 23);
+		orderPanel2.add(txtSurname);
+		
+		textAddress1 = new JTextField();
+		textAddress1.setToolTipText("");
+		textAddress1.setFont(new Font("Hot Slice", Font.PLAIN, 20));
+		textAddress1.setColumns(10);
+		textAddress1.setBounds(32, 289, 316, 23);
+		orderPanel2.add(textAddress1);
+		
+		textAddress2 = new JTextField();
+		textAddress2.setToolTipText("");
+		textAddress2.setFont(new Font("Hot Slice", Font.PLAIN, 20));
+		textAddress2.setColumns(10);
+		textAddress2.setBounds(32, 334, 316, 23);
+		orderPanel2.add(textAddress2);
+		
+		JLabel lblNameField = new JLabel("Name");
+		lblNameField.setFont(new Font("Hot Slice", Font.ITALIC, 20));
+		lblNameField.setBounds(32, 176, 104, 23);
+		orderPanel2.add(lblNameField);
+		
+		JLabel lblSurnameField = new JLabel("Surname");
+		lblSurnameField.setFont(new Font("Hot Slice", Font.ITALIC, 20));
+		lblSurnameField.setBounds(32, 220, 104, 23);
+		orderPanel2.add(lblSurnameField);
+		
+		JLabel lblAddrField = new JLabel("Address Line 1");
+		lblAddrField.setFont(new Font("Hot Slice", Font.ITALIC, 20));
+		lblAddrField.setBounds(32, 274, 134, 23);
+		orderPanel2.add(lblAddrField);
+		
+		JLabel lblAddressLine = new JLabel("Address Line 2");
+		lblAddressLine.setFont(new Font("Hot Slice", Font.ITALIC, 20));
+		lblAddressLine.setBounds(32, 319, 134, 23);
+		orderPanel2.add(lblAddressLine);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Save information");
+		chckbxNewCheckBox.setFont(new Font("Hot Slice", Font.PLAIN, 20));
+		chckbxNewCheckBox.setBounds(211, 415, 143, 23);
+		orderPanel2.add(chckbxNewCheckBox);
+		
+		JButton nextBtn_1 = new JButton("Next");
+		nextBtn_1.setFont(new Font("Hot Slice", Font.ITALIC, 30));
+		nextBtn_1.setBounds(367, 467, 116, 40);
+		orderPanel2.add(nextBtn_1);
+		
+		JSpinner spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(1, 1, 12, 1));
+		spinner.setFont(new Font("Hot Slice", Font.PLAIN, 20));
+		spinner.setBounds(449, 49, 34, 33);
+		orderPanel2.add(spinner);
+		
+		JLabel amountLbl = new JLabel("(size)  Amount");
+		amountLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
+		amountLbl.setBounds(286, 48, 197, 33);
+		orderPanel2.add(amountLbl);
+		
+		JLabel lblPostalIndex = new JLabel("Postal Index");
+		lblPostalIndex.setFont(new Font("Hot Slice", Font.ITALIC, 20));
+		lblPostalIndex.setBounds(32, 368, 104, 23);
+		orderPanel2.add(lblPostalIndex);
+		
+		txtPostal = new JTextField();
+		txtPostal.setToolTipText("");
+		txtPostal.setFont(new Font("Hot Slice", Font.PLAIN, 20));
+		txtPostal.setColumns(10);
+		txtPostal.setBounds(32, 383, 91, 23);
+		orderPanel2.add(txtPostal);
+		
+		JLabel totalLbl = new JLabel("<html>\r\n(Size) Pizzas: (amount)x (eur)\r\n<br>Shipping(ifSelected): (eur)\r\n<br>----------\r\n<br>Total: (total)\r\n</html>");
+		totalLbl.setHorizontalAlignment(SwingConstants.LEFT);
+		totalLbl.setFont(new Font("Hot Slice", Font.PLAIN, 20));
+		totalLbl.setBounds(286, 105, 226, 125);
+		orderPanel2.add(totalLbl);
 		
 		JLabel Logo = new JLabel("Martin's Pizza");
 		Logo.setHorizontalAlignment(SwingConstants.CENTER);
