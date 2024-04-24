@@ -8,12 +8,13 @@ public class PizzaOrder implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	String addrLine1, addrLine2, name, surname, phone;
+	String addrLine1, addrLine2, name, surname, phone, orderID;
 	Pizza pizza;
-	int orderID, amount;
+	int amount;
 	boolean coupon;
+	Double price;
 	
-	public PizzaOrder(Pizza pizza, String addrLine1, String addrLine2, String name, String surname, String phone,int amount, int orderID, boolean coupon) {
+	public PizzaOrder(Pizza pizza, String addrLine1, String addrLine2, String name, String surname, String phone,int amount, String orderID, boolean coupon, Double price) {
 		this.addrLine1=addrLine1;
 		this.addrLine2=addrLine2;
 		this.name=name;
@@ -23,8 +24,12 @@ public class PizzaOrder implements Serializable{
 		this.coupon=coupon;
 		this.pizza=pizza;
 		this.amount=amount;
+		this.price=price;
 	}
 	//setter
+	public void setPrice(Double priceN) {
+		price=priceN;
+	}
 	public void setPizza(Pizza pizzaN) {
 		pizza=pizzaN;
 	}
@@ -43,7 +48,7 @@ public class PizzaOrder implements Serializable{
 	public void setPhone(String phoneN) {
 		phone=phoneN;
 	}
-	public void setID(int orderIDN) {
+	public void setID(String orderIDN) {
 		orderID=orderIDN;
 	}
 	public void setCoupon(boolean couponN) {
@@ -74,10 +79,13 @@ public class PizzaOrder implements Serializable{
 	public boolean isCoupon() {
 		return coupon;
 	}
-	public int getOrderID() {
+	public String getOrderID() {
 		return orderID;
 	}
 	public int getAmount() {
 		return amount;
+	}
+	public Double getPrice() {
+		return price;
 	}
 }
