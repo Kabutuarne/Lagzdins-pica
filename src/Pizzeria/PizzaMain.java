@@ -885,7 +885,6 @@ public class PizzaMain extends JFrame {
 		String[] toppings=order.getPizza().getTopping();
 		for (int i=0; i<toppings.length;i++) {
 			toppins+="<br>"+toppings[i]+" = 0.20 Eur "+dfInt.format(order.getAmount())+"x = "+df.format(order.getAmount()*0.20)+" Eur\r\n";
-			
 		}
 		lblCheck.setText("<html>"
 				+ "<br>"+order.getPizza().getDiameter()+" cm "
