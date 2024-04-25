@@ -2,21 +2,19 @@ package Pizzeria;
 
 import java.io.Serializable;
 
-public class PizzaOrder implements Serializable{
+public class PizzaOrderS implements Serializable{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	String addrLine1, addrLine2, name, surname, phone, orderID;
+	String name, surname, phone, orderID;
 	Pizza pizza;
 	int amount;
 	boolean coupon;
 	Double price;
 	
-	public PizzaOrder(Pizza pizza, String addrLine1, String addrLine2, String name, String surname, String phone,int amount, String orderID, boolean coupon, Double price) {
-		this.addrLine1=addrLine1;
-		this.addrLine2=addrLine2;
+	public PizzaOrderS(Pizza pizza, String name, String surname, String phone,int amount, String orderID, boolean coupon, Double price) {
 		this.name=name;
 		this.surname=surname;
 		this.phone=phone;
@@ -32,12 +30,6 @@ public class PizzaOrder implements Serializable{
 	}
 	public void setPizza(Pizza pizzaN) {
 		pizza=pizzaN;
-	}
-	public void setAddrLine1(String addrLine1N) {
-		addrLine1=addrLine1N;
-	}
-	public void setAddrLine2(String addrLine2N) {
-		addrLine2=addrLine2N;
 	}
 	public void setName(String nameN) {
 		name=nameN;
@@ -60,12 +52,6 @@ public class PizzaOrder implements Serializable{
 	//getter
 	public Pizza getPizza() {
 		return pizza;
-	}
-	public String getAddrLine1() {
-		return addrLine1;
-	}
-	public String getAddrLine2() {
-		return addrLine2;
 	}
 	public String getName() {
 		return name;
