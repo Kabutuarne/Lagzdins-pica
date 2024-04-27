@@ -26,9 +26,13 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.SystemColor;
+import javax.swing.UIManager;
+import java.awt.Component;
 
 public class PizzaMain extends JFrame {
 
@@ -70,6 +74,24 @@ public class PizzaMain extends JFrame {
 	private JRadioButton crust2Rdbtn;
 	private JRadioButton crust1Rdbtn;
 	private JLabel lblCheck;
+	private JLabel toppingLayer3lbl;
+	private JLabel toppingLayer2lbl_4;
+	private JLabel toppingLayer1lbl_2;
+	private JLabel toppingLayer2lbl_3;
+	private JLabel toppingLayer2lbl;
+	private JLabel toppingLayer3lbl_2;
+	private JLabel toppingLayer3lbl_3;
+	private JLabel toppingLayer1lbl_1;
+	private JLabel toppingLayer3lbl_1;
+	private JLabel toppingLayer2lbl_5;
+	private JLabel toppingLayer2lbl_1;
+	private JLabel toppingLayer1lbl;
+	private JLabel toppingLayer3lbl_5;
+	private JLabel toppingLayer1lbl_4;
+	private JLabel toppingLayer2lbl_2;
+	private JLabel toppingLayer2lbl_6;
+	private JLabel toppingLayer3lbl_4;
+	private JLabel toppingLayer1lbl_3;
 
 	/**
 	 * Launch the application.
@@ -101,7 +123,7 @@ public class PizzaMain extends JFrame {
 		contentPane.setLayout(null);
 		
 		layeredPane = new JLayeredPane();
-		layeredPane.setBounds(0, 103, 536, 560);
+		layeredPane.setBounds(0, 103, 534, 560);
 		contentPane.add(layeredPane);
 		layeredPane.setLayout(new CardLayout(0, 0));
 		
@@ -149,6 +171,11 @@ public class PizzaMain extends JFrame {
 		SavedInfoBtn.setBounds(170, 222, 199, 53);
 		mainMenuPanel.add(SavedInfoBtn);
 		
+		JLabel lblMenuBackground = new JLabel("");
+		lblMenuBackground.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/backgroundMain1.png")));
+		lblMenuBackground.setBounds(0, 0, 534, 560);
+		mainMenuPanel.add(lblMenuBackground);
+		
 		orderPanel1 = new JPanel();
 		orderPanel1.addKeyListener(new KeyAdapter() {
 			@Override
@@ -159,99 +186,99 @@ public class PizzaMain extends JFrame {
 		orderPanel1.setLayout(null);
 		layeredPane.add(orderPanel1, "name_4048253304074500");
 		
-		JLabel toppingLayer3lbl_4 = new JLabel("3");
+		toppingLayer3lbl_4 = new JLabel("");
 		toppingLayer3lbl_4.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer3lbl_4.setBounds(428, 375, 40, 40);
+		toppingLayer3lbl_4.setBounds(408, 375, 60, 40);
 		orderPanel1.add(toppingLayer3lbl_4);
 		
-		JLabel toppingLayer3lbl = new JLabel("3");
+		toppingLayer3lbl = new JLabel("");
 		toppingLayer3lbl.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer3lbl.setBounds(335, 269, 40, 40);
+		toppingLayer3lbl.setBounds(315, 269, 60, 40);
 		orderPanel1.add(toppingLayer3lbl);
 		
-		JLabel toppingLayer3lbl_1 = new JLabel("3");
+		toppingLayer3lbl_1 = new JLabel("");
 		toppingLayer3lbl_1.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer3lbl_1.setBounds(250, 341, 40, 40);
+		toppingLayer3lbl_1.setBounds(230, 341, 60, 40);
 		orderPanel1.add(toppingLayer3lbl_1);
 		
-		JLabel toppingLayer3lbl_2 = new JLabel("3");
+		toppingLayer3lbl_2 = new JLabel("");
 		toppingLayer3lbl_2.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer3lbl_2.setBounds(402, 314, 40, 40);
+		toppingLayer3lbl_2.setBounds(382, 314, 60, 40);
 		orderPanel1.add(toppingLayer3lbl_2);
 		
-		JLabel toppingLayer3lbl_3 = new JLabel("3");
+		toppingLayer3lbl_3 = new JLabel("");
 		toppingLayer3lbl_3.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer3lbl_3.setBounds(322, 356, 40, 40);
+		toppingLayer3lbl_3.setBounds(302, 356, 60, 40);
 		orderPanel1.add(toppingLayer3lbl_3);
 		
-		JLabel toppingLayer3lbl_5 = new JLabel("3");
+		toppingLayer3lbl_5 = new JLabel("");
 		toppingLayer3lbl_5.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer3lbl_5.setBounds(345, 454, 40, 40);
+		toppingLayer3lbl_5.setBounds(325, 454, 60, 40);
 		orderPanel1.add(toppingLayer3lbl_5);
 		
-		JLabel toppingLayer1lbl = new JLabel("1");
+		toppingLayer1lbl = new JLabel("");
 		toppingLayer1lbl.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer1lbl.setBounds(308, 441, 40, 40);
+		toppingLayer1lbl.setBounds(288, 441, 60, 40);
 		orderPanel1.add(toppingLayer1lbl);
 		
-		JLabel toppingLayer1lbl_1 = new JLabel("1");
+		toppingLayer1lbl_1 = new JLabel("");
 		toppingLayer1lbl_1.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer1lbl_1.setBounds(289, 354, 40, 40);
+		toppingLayer1lbl_1.setBounds(269, 354, 60, 40);
 		orderPanel1.add(toppingLayer1lbl_1);
 		
-		JLabel toppingLayer1lbl_2 = new JLabel("1");
+		toppingLayer1lbl_2 = new JLabel("");
 		toppingLayer1lbl_2.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer1lbl_2.setBounds(335, 305, 40, 40);
+		toppingLayer1lbl_2.setBounds(315, 305, 60, 40);
 		orderPanel1.add(toppingLayer1lbl_2);
 		
-		JLabel toppingLayer1lbl_3 = new JLabel("1");
+		toppingLayer1lbl_3 = new JLabel("");
 		toppingLayer1lbl_3.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer1lbl_3.setBounds(402, 354, 40, 40);
+		toppingLayer1lbl_3.setBounds(382, 354, 60, 40);
 		orderPanel1.add(toppingLayer1lbl_3);
 		
-		JLabel toppingLayer1lbl_4 = new JLabel("1");
+		toppingLayer1lbl_4 = new JLabel("");
 		toppingLayer1lbl_4.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer1lbl_4.setBounds(387, 441, 40, 40);
+		toppingLayer1lbl_4.setBounds(367, 441, 60, 40);
 		orderPanel1.add(toppingLayer1lbl_4);
 		
-		JLabel toppingLayer1lbl_1_1 = new JLabel("1");
+		JLabel toppingLayer1lbl_1_1 = new JLabel("");
 		toppingLayer1lbl_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer1lbl_1_1.setBounds(345, 375, 40, 40);
+		toppingLayer1lbl_1_1.setBounds(325, 375, 60, 40);
 		orderPanel1.add(toppingLayer1lbl_1_1);
 		
-		JLabel toppingLayer2lbl = new JLabel("2");
+		toppingLayer2lbl = new JLabel("");
 		toppingLayer2lbl.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer2lbl.setBounds(345, 341, 40, 40);
+		toppingLayer2lbl.setBounds(341, 341, 60, 40);
 		orderPanel1.add(toppingLayer2lbl);
 		
-		JLabel toppingLayer2lbl_1 = new JLabel("2");
+		toppingLayer2lbl_1 = new JLabel("");
 		toppingLayer2lbl_1.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer2lbl_1.setBounds(308, 390, 40, 40);
+		toppingLayer2lbl_1.setBounds(288, 390, 60, 40);
 		orderPanel1.add(toppingLayer2lbl_1);
 		
-		JLabel toppingLayer2lbl_2 = new JLabel("2");
+		toppingLayer2lbl_2 = new JLabel("");
 		toppingLayer2lbl_2.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer2lbl_2.setBounds(372, 395, 40, 40);
+		toppingLayer2lbl_2.setBounds(352, 395, 60, 40);
 		orderPanel1.add(toppingLayer2lbl_2);
 		
-		JLabel toppingLayer2lbl_3 = new JLabel("2");
+		toppingLayer2lbl_3 = new JLabel("");
 		toppingLayer2lbl_3.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer2lbl_3.setBounds(402, 287, 40, 40);
+		toppingLayer2lbl_3.setBounds(382, 287, 60, 40);
 		orderPanel1.add(toppingLayer2lbl_3);
 		
-		JLabel toppingLayer2lbl_4 = new JLabel("2");
+		toppingLayer2lbl_4 = new JLabel("");
 		toppingLayer2lbl_4.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer2lbl_4.setBounds(278, 303, 40, 40);
+		toppingLayer2lbl_4.setBounds(278, 303, 60, 40);
 		orderPanel1.add(toppingLayer2lbl_4);
 		
-		JLabel toppingLayer2lbl_5 = new JLabel("2");
+		toppingLayer2lbl_5 = new JLabel("");
 		toppingLayer2lbl_5.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer2lbl_5.setBounds(263, 405, 40, 40);
+		toppingLayer2lbl_5.setBounds(243, 405, 60, 40);
 		orderPanel1.add(toppingLayer2lbl_5);
 		
-		JLabel toppingLayer2lbl_6 = new JLabel("2");
+		toppingLayer2lbl_6 = new JLabel("");
 		toppingLayer2lbl_6.setHorizontalAlignment(SwingConstants.CENTER);
-		toppingLayer2lbl_6.setBounds(428, 405, 40, 40);
+		toppingLayer2lbl_6.setBounds(408, 405, 60, 40);
 		orderPanel1.add(toppingLayer2lbl_6);
 		
 		JLabel pizzaLbl = new JLabel("");
@@ -264,17 +291,22 @@ public class PizzaMain extends JFrame {
 		orderPanel1.add(pizzaLbl);
 		
 		JLabel yourPizzaLbl = new JLabel("Your Pizza");
+		yourPizzaLbl.setForeground(Color.WHITE);
 		yourPizzaLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		yourPizzaLbl.setFont(new Font("Hot Slice", Font.BOLD, 40));
+		yourPizzaLbl.setFont(new Font("Hot Slice", Font.ITALIC, 40));
 		yourPizzaLbl.setBounds(184, 0, 164, 51);
 		orderPanel1.add(yourPizzaLbl);
 		
 		JLabel crustLbl = new JLabel("Crust Type");
+		crustLbl.setForeground(UIManager.getColor("CheckBox.darkShadow"));
 		crustLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
 		crustLbl.setBounds(30, 43, 116, 33);
 		orderPanel1.add(crustLbl);
 		
 		crust1Rdbtn = new JRadioButton("Thick");
+		crust1Rdbtn.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/checked.png")));
+		crust1Rdbtn.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/unchecked.png")));
+		crust1Rdbtn.setForeground(Color.LIGHT_GRAY);
 		crust1Rdbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cheeseLbl.setVisible(false);
@@ -287,6 +319,9 @@ public class PizzaMain extends JFrame {
 		orderPanel1.add(crust1Rdbtn);
 		
 		crust2Rdbtn = new JRadioButton("Thin");
+		crust2Rdbtn.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/checked.png")));
+		crust2Rdbtn.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/unchecked.png")));
+		crust2Rdbtn.setForeground(Color.LIGHT_GRAY);
 		crust2Rdbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cheeseLbl.setVisible(false);
@@ -299,6 +334,9 @@ public class PizzaMain extends JFrame {
 		orderPanel1.add(crust2Rdbtn);
 		
 		crust3Rdbtn = new JRadioButton("Stuffed");
+		crust3Rdbtn.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/checked.png")));
+		crust3Rdbtn.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/unchecked.png")));
+		crust3Rdbtn.setForeground(Color.LIGHT_GRAY);
 		crust3Rdbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					cheeseLbl.setVisible(true);
@@ -306,117 +344,247 @@ public class PizzaMain extends JFrame {
 					cheese2Rdbtn.setVisible(true);
 			}
 		});
-		
+		crust1Rdbtn.setOpaque(false);
+		crust2Rdbtn.setOpaque(false);
+		crust3Rdbtn.setOpaque(false);
+
 		crust3Rdbtn.setFont(new Font("Hot Slice", Font.PLAIN, 18));
 		crust3Rdbtn.setBounds(30, 135, 111, 23);
 		orderPanel1.add(crust3Rdbtn);
 		
 		JLabel toppingsChoiceLbl = new JLabel("Toppings");
+		toppingsChoiceLbl.setForeground(UIManager.getColor("CheckBox.darkShadow"));
 		toppingsChoiceLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
 		toppingsChoiceLbl.setBounds(30, 235, 111, 33);
 		orderPanel1.add(toppingsChoiceLbl);
 		
 		JLabel topping1ChoiceLbl = new JLabel("Topping 1");
+		topping1ChoiceLbl.setForeground(Color.LIGHT_GRAY);
 		topping1ChoiceLbl.setFont(new Font("Hot Slice", Font.PLAIN, 20));
 		topping1ChoiceLbl.setBounds(30, 286, 116, 23);
 		orderPanel1.add(topping1ChoiceLbl);
 		
 		JRadioButton topping1 = new JRadioButton("");
-		topping1.setBounds(30, 314, 21, 23);
+		topping1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setTopping1("cheese");
+			}
+		});
+		topping1.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/cheeseS.png")));
+		topping1.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/cheese.png")));
+		topping1.setBounds(21, 305, 40, 40);
 		orderPanel1.add(topping1);
 		
 		JRadioButton topping1_1 = new JRadioButton("");
-		topping1_1.setBounds(69, 314, 21, 23);
+		topping1_1.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/pepperoniS.png")));
+		topping1_1.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/pepperoni.png")));
+		topping1_1.setIconTextGap(0);
+		topping1_1.setHideActionText(true);
+		topping1_1.setOpaque(false);
+		topping1_1.setBounds(60, 305, 40, 40);
+		topping1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setTopping1("pepperoni");
+			}
+		});
 		orderPanel1.add(topping1_1);
 		
 		JRadioButton topping1_2 = new JRadioButton("");
-		topping1_2.setBounds(108, 314, 21, 23);
+		topping1_2.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/sweetPepperS.png")));
+		topping1_2.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/sweetPepper.png")));
+		topping1_2.setBounds(99, 305, 40, 40);
+		topping1_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setTopping1("sweetPepper");
+			}
+		});
 		orderPanel1.add(topping1_2);
 		
 		JRadioButton topping1_3 = new JRadioButton("");
-		topping1_3.setBounds(147, 314, 21, 23);
+		topping1_3.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/champignonS.png")));
+		topping1_3.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/champignon.png")));
+		topping1_3.setBounds(138, 305, 40, 40);
+		topping1_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setTopping1("champignon");
+			}
+		});
 		orderPanel1.add(topping1_3);
 		
 		JRadioButton topping2 = new JRadioButton("");
-		topping2.setBounds(30, 371, 21, 23);
+		topping2.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+		topping2.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/cheese.png")));
+		topping2.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/cheeseS.png")));
+		topping2.setBounds(21, 363, 40, 40);
+		topping2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setTopping2("cheese");
+			}
+		});
 		orderPanel1.add(topping2);
 		
 		JLabel topping2ChoiceLbl = new JLabel("Topping 2");
+		topping2ChoiceLbl.setForeground(Color.LIGHT_GRAY);
 		topping2ChoiceLbl.setFont(new Font("Hot Slice", Font.PLAIN, 20));
 		topping2ChoiceLbl.setBounds(30, 343, 116, 23);
 		orderPanel1.add(topping2ChoiceLbl);
 		
 		JRadioButton topping2_1 = new JRadioButton("");
-		topping2_1.setBounds(69, 371, 21, 23);
+		topping2_1.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+		topping2_1.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/pepperoni.png")));
+		topping2_1.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/pepperoniS.png")));
+		topping2_1.setBounds(60, 363, 40, 40);
+		topping2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setTopping2("pepperoni");
+			}
+		});
 		orderPanel1.add(topping2_1);
 		
 		JRadioButton topping2_2 = new JRadioButton("");
-		topping2_2.setBounds(108, 371, 21, 23);
+		topping2_2.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+		topping2_2.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/sweetPepper.png")));
+		topping2_2.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/sweetPepperS.png")));
+		topping2_2.setBounds(99, 363, 40, 40);
+		topping2_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setTopping2("sweetPepper");
+			}
+		});
 		orderPanel1.add(topping2_2);
 		
 		JRadioButton topping2_3 = new JRadioButton("");
-		topping2_3.setBounds(147, 371, 21, 23);
+		topping2_3.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+		topping2_3.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/champignon.png")));
+		topping2_3.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/champignonS.png")));
+		topping2_3.setBounds(138, 363, 40, 40);
 		orderPanel1.add(topping2_3);
+		topping2_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setTopping2("champignon");
+			}
+		});
 		
 		JRadioButton topping3 = new JRadioButton("");
-		topping3.setBounds(30, 434, 21, 23);
+		topping3.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/cheese.png")));
+		topping3.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/cheeseS.png")));
+		topping3.setBounds(21, 427, 40, 40);
 		orderPanel1.add(topping3);
-		
+		topping3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setTopping3("cheese");
+			}
+		});
 		JLabel topping3ChoiceLbl = new JLabel("Topping 3");
+		topping3ChoiceLbl.setForeground(Color.LIGHT_GRAY);
 		topping3ChoiceLbl.setFont(new Font("Hot Slice", Font.PLAIN, 20));
 		topping3ChoiceLbl.setBounds(30, 406, 116, 23);
 		orderPanel1.add(topping3ChoiceLbl);
 		
 		JRadioButton topping3_1 = new JRadioButton("");
-		topping3_1.setBounds(69, 434, 21, 23);
+		topping3_1.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/pepperoni.png")));
+		topping3_1.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/pepperoniS.png")));
+		topping3_1.setBounds(60, 427, 40, 40);
+		topping3_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setTopping3("pepperoni");
+			}
+		});
 		orderPanel1.add(topping3_1);
 		
 		JRadioButton topping3_2 = new JRadioButton("");
-		topping3_2.setBounds(108, 434, 21, 23);
+		topping3_2.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/sweetPepper.png")));
+		topping3_2.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/sweetPepperS.png")));
+		topping3_2.setBounds(99, 427, 40, 40);
+		topping3_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setTopping3("sweetPepper");
+			}
+		});
 		orderPanel1.add(topping3_2);
 		
 		JRadioButton topping3_3 = new JRadioButton("");
-		topping3_3.setBounds(147, 434, 21, 23);
+		topping3_3.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/champignon.png")));
+		topping3_3.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/sweetPepperS.png")));
+		topping3_3.setBounds(138, 427, 40, 40);
+		topping3_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setTopping3("champignon");
+			}
+		});
 		orderPanel1.add(topping3_3);
+		topping1.setOpaque(false);
+		topping1_2.setOpaque(false);
+		topping1_3.setOpaque(false);
+		
+		topping2.setOpaque(false);
+		topping2_1.setOpaque(false);
+		topping2_2.setOpaque(false);
+		topping2_3.setOpaque(false);
+		
+		topping3.setOpaque(false);
+		topping3_1.setOpaque(false);
+		topping3_2.setOpaque(false);
+		topping3_3.setOpaque(false);
 		
 		JLabel sauceLbl = new JLabel("Sauce Type");
+		sauceLbl.setForeground(UIManager.getColor("CheckBox.darkShadow"));
 		sauceLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
 		sauceLbl.setBounds(372, 43, 116, 33);
 		orderPanel1.add(sauceLbl);
 		
 		JRadioButton sauce1Rdbtn = new JRadioButton("Tomato");
+		sauce1Rdbtn.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/checked.png")));
+		sauce1Rdbtn.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/unchecked.png")));
+		sauce1Rdbtn.setForeground(Color.LIGHT_GRAY);
 		sauce1Rdbtn.setFont(new Font("Hot Slice", Font.PLAIN, 18));
 		sauce1Rdbtn.setBounds(372, 83, 111, 23);
 		orderPanel1.add(sauce1Rdbtn);
 		
 		JRadioButton sauce2Rdbtn = new JRadioButton("Pesto");
+		sauce2Rdbtn.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/checked.png")));
+		sauce2Rdbtn.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/unchecked.png")));
+		sauce2Rdbtn.setForeground(Color.LIGHT_GRAY);
 		sauce2Rdbtn.setFont(new Font("Hot Slice", Font.PLAIN, 18));
 		sauce2Rdbtn.setBounds(372, 109, 111, 23);
 		orderPanel1.add(sauce2Rdbtn);
 		
 		JRadioButton sauce3Rdbtn = new JRadioButton("Alfredo");
+		sauce3Rdbtn.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/checked.png")));
+		sauce3Rdbtn.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/unchecked.png")));
+		sauce3Rdbtn.setForeground(Color.LIGHT_GRAY);
 		sauce3Rdbtn.setFont(new Font("Hot Slice", Font.PLAIN, 18));
 		sauce3Rdbtn.setBounds(372, 135, 111, 23);
 		orderPanel1.add(sauce3Rdbtn);
-		
+		sauce1Rdbtn.setOpaque(false);
+		sauce2Rdbtn.setOpaque(false);
+		sauce3Rdbtn.setOpaque(false);
 		cheeseLbl = new JLabel("Crust Filling");
+		cheeseLbl.setForeground(Color.WHITE);
 		cheeseLbl.setVisible(false);
 		cheeseLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
 		cheeseLbl.setBounds(213, 43, 116, 33);
 		orderPanel1.add(cheeseLbl);
 		
 		cheese1Rdbtn = new JRadioButton("Cheese");
+		cheese1Rdbtn.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/checked.png")));
+		cheese1Rdbtn.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/unchecked.png")));
+		cheese1Rdbtn.setForeground(Color.LIGHT_GRAY);
 		cheese1Rdbtn.setVisible(false);
 		cheese1Rdbtn.setFont(new Font("Hot Slice", Font.PLAIN, 18));
 		cheese1Rdbtn.setBounds(213, 83, 111, 23);
 		orderPanel1.add(cheese1Rdbtn);
 		
 		cheese2Rdbtn = new JRadioButton("Double-Cheese");
+		cheese2Rdbtn.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/checked.png")));
+		cheese2Rdbtn.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/unchecked.png")));
+		cheese2Rdbtn.setForeground(Color.LIGHT_GRAY);
 		cheese2Rdbtn.setVisible(false);
 		cheese2Rdbtn.setFont(new Font("Hot Slice", Font.PLAIN, 18));
 		cheese2Rdbtn.setBounds(213, 109, 135, 23);
 		orderPanel1.add(cheese2Rdbtn);
-		
+		cheese1Rdbtn.setOpaque(false);
+		cheese2Rdbtn.setOpaque(false);
 		ButtonGroup crustChoice = new ButtonGroup();
 		crustChoice.add(crust1Rdbtn);
 		crustChoice.add(crust2Rdbtn);
@@ -450,6 +618,7 @@ public class PizzaMain extends JFrame {
 		topping3Choice.add(topping3_3);
 		
 		JSlider sizeSlider = new JSlider();
+		sizeSlider.setOpaque(false);
 		sizeSlider.setFont(new Font("Hot Slice", Font.PLAIN, 18));
 		sizeSlider.setPaintLabels(true);
 		sizeSlider.setMajorTickSpacing(6);
@@ -464,6 +633,7 @@ public class PizzaMain extends JFrame {
 		orderPanel1.add(sizeSlider);
 		
 		JLabel sizeLbl = new JLabel("Pizza Size");
+		sizeLbl.setForeground(UIManager.getColor("CheckBox.darkShadow"));
 		sizeLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
 		sizeLbl.setBounds(213, 191, 116, 33);
 		orderPanel1.add(sizeLbl);
@@ -483,11 +653,12 @@ public class PizzaMain extends JFrame {
 						crust="Thick";
 					if(crust2Rdbtn.isSelected())
 						crust="Thin";
-					if(crust3Rdbtn.isSelected())
+					if(crust3Rdbtn.isSelected()) {
 						crust="Stuffed";
-					if(crust3Rdbtn.isSelected()) 
 						isStuffed=true;
-					
+						if(cheese1Rdbtn.isSelected()==false || cheese2Rdbtn.isSelected()==false)
+							aintSelected=true;
+					}
 				}
 				/////////
 				if(null==sauceChoice.getSelection()) {
@@ -517,7 +688,7 @@ public class PizzaMain extends JFrame {
 					if(topping2.isSelected())
 						toppingsP[toppingsAmount]="Cheese";
 					if(topping2_1.isSelected())
-						toppingsP[toppingsAmount]="Pepperoni";
+						toppingsP[toppingsAmount]="Pepperoni"; //pepperoni
 					if(topping2_2.isSelected())
 						toppingsP[toppingsAmount]="Sweet Pepper";
 					if(topping2_3.isSelected())
@@ -560,6 +731,11 @@ public class PizzaMain extends JFrame {
 		nextBtn.setFont(new Font("Hot Slice", Font.ITALIC, 30));
 		nextBtn.setBounds(30, 495, 116, 40);
 		orderPanel1.add(nextBtn);
+		
+		JLabel lblOrderBackground1 = new JLabel("");
+		lblOrderBackground1.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/backgroundMain2.png")));
+		lblOrderBackground1.setBounds(0, 0, 534, 560);
+		orderPanel1.add(lblOrderBackground1);
 		
 		orderPanel2 = new JPanel();
 		orderPanel2.setLayout(null);
@@ -837,12 +1013,18 @@ public class PizzaMain extends JFrame {
 		lblCheck.setFont(new Font("Hot Slice", Font.PLAIN, 20));
 		lblCheck.setBounds(88, 62, 368, 399);
 		checkoutPanel.add(lblCheck);
-		
 		JLabel Logo = new JLabel("Martin's Pizza");
+
+		Logo.setForeground(Color.WHITE);
 		Logo.setHorizontalAlignment(SwingConstants.CENTER);
 		Logo.setFont(new Font("Lindra", Font.PLAIN, 50));
 		Logo.setBounds(10, 11, 516, 81);
 		contentPane.add(Logo);
+		
+		JLabel lblBackgroundMain = new JLabel("");
+		lblBackgroundMain.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/backgroundMain.png")));
+		lblBackgroundMain.setBounds(0, 0, 534, 661);
+		contentPane.add(lblBackgroundMain);
 	}
 	public void switchPanels(JPanel panel) {
 		layeredPane.removeAll();
@@ -880,7 +1062,7 @@ public class PizzaMain extends JFrame {
 			totalLbl.setText("<html>\r\n"+pizza.getDiameter()+"cm Pizza: "+df.format(pizzaPrice)+" Eur "+dfInt.format(multiplier)+"x = "+df.format(multiplier*pizzaPrice)+" Eur"+"\r\n"+toppins+shipping+couponTxt+"<br>----------\r\n<br>Total: "+df.format(total)+"\r\n</html>");
 			}
 		}
-	public void updateCheck(PizzaOrderS order) {
+	public void updateCheck(PizzaOrderS order) { //TODO: finish later
 		String toppins="";
 		String[] toppings=order.getPizza().getTopping();
 		for (int i=0; i<toppings.length;i++) {
@@ -894,7 +1076,31 @@ public class PizzaMain extends JFrame {
 				+ "<br>"
 				+ "<br>"
 				+ "<br>"
-				+ "<br> ID - "+order.getOrderID()
+				+ "<br> Order ID - "+order.getOrderID()
 				+ "</html>");
+	}
+	public void setTopping1(String topping) {
+		toppingLayer1lbl.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
+		toppingLayer1lbl_1.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
+		toppingLayer1lbl_2.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
+		toppingLayer1lbl_3.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
+		toppingLayer1lbl_4.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
+	}
+	public void setTopping2(String topping) {
+		toppingLayer2lbl.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
+		toppingLayer2lbl_1.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
+		toppingLayer2lbl_2.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
+		toppingLayer2lbl_3.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
+		toppingLayer2lbl_4.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
+		toppingLayer2lbl_5.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
+		toppingLayer2lbl_6.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
+	}
+	public void setTopping3(String topping) {
+		toppingLayer3lbl.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
+		toppingLayer3lbl_1.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
+		toppingLayer3lbl_2.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
+		toppingLayer3lbl_3.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
+		toppingLayer3lbl_4.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
+		toppingLayer3lbl_5.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
 	}
 }
