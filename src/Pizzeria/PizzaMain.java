@@ -352,12 +352,6 @@ public class PizzaMain extends JFrame {
 		crust3Rdbtn.setBounds(30, 135, 111, 23);
 		orderPanel1.add(crust3Rdbtn);
 		
-		JLabel toppingsChoiceLbl = new JLabel("Toppings");
-		toppingsChoiceLbl.setForeground(UIManager.getColor("CheckBox.darkShadow"));
-		toppingsChoiceLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
-		toppingsChoiceLbl.setBounds(30, 235, 111, 33);
-		orderPanel1.add(toppingsChoiceLbl);
-		
 		JLabel topping1ChoiceLbl = new JLabel("Topping 1");
 		topping1ChoiceLbl.setForeground(Color.LIGHT_GRAY);
 		topping1ChoiceLbl.setFont(new Font("Hot Slice", Font.PLAIN, 20));
@@ -370,6 +364,12 @@ public class PizzaMain extends JFrame {
 				setTopping1("cheese");
 			}
 		});
+		
+		JLabel toppingsChoiceLbl = new JLabel("Toppings");
+		toppingsChoiceLbl.setForeground(UIManager.getColor("CheckBox.darkShadow"));
+		toppingsChoiceLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
+		toppingsChoiceLbl.setBounds(30, 235, 148, 33);
+		orderPanel1.add(toppingsChoiceLbl);
 		topping1.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/cheeseS.png")));
 		topping1.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/cheese.png")));
 		topping1.setBounds(21, 305, 40, 40);
@@ -505,7 +505,7 @@ public class PizzaMain extends JFrame {
 		
 		JRadioButton topping3_3 = new JRadioButton("");
 		topping3_3.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/champignon.png")));
-		topping3_3.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/sweetPepperS.png")));
+		topping3_3.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/champignonS.png")));
 		topping3_3.setBounds(138, 427, 40, 40);
 		topping3_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -581,7 +581,7 @@ public class PizzaMain extends JFrame {
 		cheese2Rdbtn.setForeground(Color.LIGHT_GRAY);
 		cheese2Rdbtn.setVisible(false);
 		cheese2Rdbtn.setFont(new Font("Hot Slice", Font.PLAIN, 18));
-		cheese2Rdbtn.setBounds(213, 109, 135, 23);
+		cheese2Rdbtn.setBounds(213, 109, 149, 23);
 		orderPanel1.add(cheese2Rdbtn);
 		cheese1Rdbtn.setOpaque(false);
 		cheese2Rdbtn.setOpaque(false);
@@ -731,6 +731,12 @@ public class PizzaMain extends JFrame {
 		nextBtn.setFont(new Font("Hot Slice", Font.ITALIC, 30));
 		nextBtn.setBounds(30, 495, 116, 40);
 		orderPanel1.add(nextBtn);
+		
+		JLabel toppingsChoiceLbl1 = new JLabel("20 cents");
+		toppingsChoiceLbl1.setForeground(new Color(0, 0, 0));
+		toppingsChoiceLbl1.setFont(new Font("Hot Slice", Font.BOLD, 15));
+		toppingsChoiceLbl1.setBounds(119, 237, 61, 33);
+		orderPanel1.add(toppingsChoiceLbl1);
 		
 		JLabel lblOrderBackground1 = new JLabel("");
 		lblOrderBackground1.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/backgroundMain2.png")));
