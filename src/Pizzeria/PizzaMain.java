@@ -92,6 +92,8 @@ public class PizzaMain extends JFrame {
 	private JLabel toppingLayer2lbl_6;
 	private JLabel toppingLayer3lbl_4;
 	private JLabel toppingLayer1lbl_3;
+	private ButtonGroup topping1Choice, topping2Choice,topping3Choice;
+	private JLabel lblOrderBackground2;
 
 	/**
 	 * Launch the application.
@@ -599,19 +601,19 @@ public class PizzaMain extends JFrame {
 		sauceChoice.add(sauce2Rdbtn);
 		sauceChoice.add(sauce3Rdbtn);
 		
-		ButtonGroup topping1Choice = new ButtonGroup();
+		 topping1Choice = new ButtonGroup();
 		topping1Choice.add(topping1);
 		topping1Choice.add(topping1_1);
 		topping1Choice.add(topping1_2);
 		topping1Choice.add(topping1_3);
 		
-		ButtonGroup topping2Choice = new ButtonGroup();
+		 topping2Choice = new ButtonGroup();
 		topping2Choice.add(topping2);
 		topping2Choice.add(topping2_1);
 		topping2Choice.add(topping2_2);
 		topping2Choice.add(topping2_3);
 		
-		ButtonGroup topping3Choice = new ButtonGroup();
+		 topping3Choice = new ButtonGroup();
 		topping3Choice.add(topping3);
 		topping3Choice.add(topping3_1);
 		topping3Choice.add(topping3_2);
@@ -778,11 +780,16 @@ public class PizzaMain extends JFrame {
 		orderPanel2.add(errorLbl_3);
 		ButtonGroup deliverChoice = new ButtonGroup();
 		
-		deliverRdbtn1 = new JRadioButton("Ship to Address");
+		deliverRdbtn1 = new JRadioButton("Shipping");
+		deliverRdbtn1.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/checked.png")));
+		deliverRdbtn1.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/unchecked.png")));
+		deliverRdbtn1.setForeground(new Color(255, 255, 255));
+		deliverRdbtn1.setOpaque(false);
 		deliverRdbtn1.setSelected(true);
 		deliverRdbtn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				updateTotal(yummyPizza);
+				lblOrderBackground2.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/backgroundMain3.png")));
 				errorLbl_2.setVisible(true);
 				errorLbl_3.setVisible(true);
 				lblAddrField.setVisible(true);
@@ -797,9 +804,14 @@ public class PizzaMain extends JFrame {
 		orderPanel2.add(deliverRdbtn1);
 		deliverChoice.add(deliverRdbtn1);
 		
-		deliverRdbtn = new JRadioButton("Pick up at Store");
+		deliverRdbtn = new JRadioButton("Pick up");
+		deliverRdbtn.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/checked.png")));
+		deliverRdbtn.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/unchecked.png")));
+		deliverRdbtn.setOpaque(false);
+		deliverRdbtn.setForeground(new Color(255, 255, 255));
 		deliverRdbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				lblOrderBackground2.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/backgroundMain3_1.png")));
 				updateTotal(yummyPizza);
 				errorLbl_2.setVisible(false);
 				errorLbl_3.setVisible(false);
@@ -815,8 +827,12 @@ public class PizzaMain extends JFrame {
 		deliverChoice.add(deliverRdbtn);
 		
 		saveInfo = new JCheckBox("Save information");
+		saveInfo.setForeground(new Color(255, 255, 255));
+		saveInfo.setOpaque(false);
+		saveInfo.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/unchecked.png")));
+		saveInfo.setSelectedIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/checked.png")));
 		saveInfo.setFont(new Font("Hot Slice", Font.PLAIN, 20));
-		saveInfo.setBounds(211, 415, 143, 23);
+		saveInfo.setBounds(180, 415, 174, 23);
 		orderPanel2.add(saveInfo);
 		
 		txtName = new JTextField();
@@ -869,12 +885,14 @@ public class PizzaMain extends JFrame {
 		orderPanel2.add(txtNumber);
 		
 		JLabel yourOrderLbl = new JLabel("Your Order");
+		yourOrderLbl.setForeground(new Color(255, 255, 255));
 		yourOrderLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		yourOrderLbl.setFont(new Font("Hot Slice", Font.BOLD, 40));
 		yourOrderLbl.setBounds(178, 0, 176, 51);
 		orderPanel2.add(yourOrderLbl);
 		
 		JLabel deliverLbl = new JLabel("Delivery Option");
+		deliverLbl.setForeground(UIManager.getColor("CheckBox.darkShadow"));
 		deliverLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
 		deliverLbl.setBounds(32, 49, 151, 33);
 		orderPanel2.add(deliverLbl);
@@ -888,26 +906,31 @@ public class PizzaMain extends JFrame {
 		layeredPane.add(savedInfoPanel, "name_4048253442632400");
 		
 		lblNameField = new JLabel("Name");
+		lblNameField.setForeground(Color.DARK_GRAY);
 		lblNameField.setFont(new Font("Hot Slice", Font.ITALIC, 20));
 		lblNameField.setBounds(32, 176, 104, 23);
 		orderPanel2.add(lblNameField);
 		
 		lblSurnameField = new JLabel("Surname");
+		lblSurnameField.setForeground(Color.DARK_GRAY);
 		lblSurnameField.setFont(new Font("Hot Slice", Font.ITALIC, 20));
 		lblSurnameField.setBounds(32, 220, 104, 23);
 		orderPanel2.add(lblSurnameField);
 		
 		lblAddrField = new JLabel("Address Line 1");
+		lblAddrField.setForeground(Color.DARK_GRAY);
 		lblAddrField.setFont(new Font("Hot Slice", Font.ITALIC, 20));
 		lblAddrField.setBounds(32, 274, 134, 23);
 		orderPanel2.add(lblAddrField);
 		
 		lblAddrField1 = new JLabel("Address Line 2");
+		lblAddrField1.setForeground(Color.DARK_GRAY);
 		lblAddrField1.setFont(new Font("Hot Slice", Font.ITALIC, 20));
 		lblAddrField1.setBounds(32, 319, 134, 23);
 		orderPanel2.add(lblAddrField1);
 		
 		spinner = new JSpinner();
+		spinner.setOpaque(false);
 		spinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				updateTotal(yummyPizza);
@@ -915,32 +938,36 @@ public class PizzaMain extends JFrame {
 		});
 		spinner.setModel(new SpinnerNumberModel(1, 1, 12, 1));
 		spinner.setFont(new Font("Hot Slice", Font.PLAIN, 20));
-		spinner.setBounds(358, 50, 34, 33);
+		spinner.setBounds(358, 45, 34, 33);
 		orderPanel2.add(spinner);
 		
 		amountLbl = new JLabel("Pizza  Amount");
+		amountLbl.setForeground(UIManager.getColor("CheckBox.darkShadow"));
 		amountLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
 		amountLbl.setBounds(211, 48, 272, 33);
 		orderPanel2.add(amountLbl);
 		
 		lblCoupon = new JLabel("Coupon");
+		lblCoupon.setForeground(Color.DARK_GRAY);
 		lblCoupon.setFont(new Font("Hot Slice", Font.ITALIC, 20));
 		lblCoupon.setBounds(32, 368, 104, 23);
 		orderPanel2.add(lblCoupon);
 		
 		totalLbl = new JLabel("<html>\r\n(Size) Pizzas: (amount)x (eur)\r\n<br>Shipping(ifSelected): (eur)\r\n<br>----------\r\n<br>Total: (total)\r\n</html>");
+		totalLbl.setForeground(new Color(255, 255, 255));
 		totalLbl.setVerticalAlignment(SwingConstants.TOP);
 		totalLbl.setHorizontalAlignment(SwingConstants.LEFT);
-		totalLbl.setFont(new Font("Hot Slice", Font.PLAIN, 18));
-		totalLbl.setBounds(211, 89, 301, 189);
+		totalLbl.setFont(new Font("Hot Slice", Font.PLAIN, 16));
+		totalLbl.setBounds(211, 89, 260, 159);
 		orderPanel2.add(totalLbl);
 		
 		lblNumber = new JLabel("Phone Number");
+		lblNumber.setForeground(Color.DARK_GRAY);
 		lblNumber.setFont(new Font("Hot Slice", Font.ITALIC, 20));
 		lblNumber.setBounds(170, 370, 178, 23);
 		orderPanel2.add(lblNumber);
 		
-		JButton nextBtn_1 = new JButton("Next");
+		JButton nextBtn_1 = new JButton("Confirm");
 		nextBtn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean aizpildits = true;
@@ -1002,8 +1029,23 @@ public class PizzaMain extends JFrame {
 				}
 		});
 		nextBtn_1.setFont(new Font("Hot Slice", Font.ITALIC, 30));
-		nextBtn_1.setBounds(367, 467, 116, 40);
+		nextBtn_1.setBounds(367, 495, 116, 40);
 		orderPanel2.add(nextBtn_1);
+		
+		JButton backBtn = new JButton("Back");
+		backBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switchPanels(orderPanel1);
+			}
+		});
+		backBtn.setFont(new Font("Hot Slice", Font.ITALIC, 30));
+		backBtn.setBounds(30, 495, 116, 40);
+		orderPanel2.add(backBtn);
+		
+		lblOrderBackground2 = new JLabel("");
+		lblOrderBackground2.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/backgroundMain3.png")));
+		lblOrderBackground2.setBounds(0, 0, 534, 560);
+		orderPanel2.add(lblOrderBackground2);
 		
 		checkoutPanel = new JPanel();
 		layeredPane.add(checkoutPanel, "name_4302718882001700");
