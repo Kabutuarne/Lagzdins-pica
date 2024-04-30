@@ -1,9 +1,16 @@
 # Picas pasūtīšanas programma
 Programma ļauj izveidot savu picu un to pasūtīt.
 
-![pizzaPic](https://www.canva.com/design/DAGD4SIGcGE/lik0ZPAJI8Ct03ssd-G7Fg/view?utm_content=DAGD4SIGcGE&utm_campaign=share_your_design&utm_medium=link&utm_source=shareyourdesignpanel)
+![PicasIkona](https://github.com/Kabutuarne/Lagzdins_Pizza/assets/167473054/fe80734f-99a1-45bd-876f-86dd7cbdbc60)
 
 **Vēl darāmais**
 - [ ] Jāizveido vēstures logs un tas jānoformē;
 - [ ] Jāpameiģina izveidot jaunu zaru un to sapluināt ar main zaru;
 - [ ] Jāizveido čeks un tā logs, kas parāda pirkuma informāciju.
+- [ ] Jāpabeidz failu lasīšanas funkcijas.
+
+**Izdarītais**
+- [x] Izveidots un noformēts main menu logs;
+- [x] Izveidots 1. pasūtīšanas logs ar visām funkcijām;
+- [x] Izveidots 2. pasūtīšanas logs ar visām funkcijām;
+- [x] Objekti nepieciešamie ir izveidoti. 
