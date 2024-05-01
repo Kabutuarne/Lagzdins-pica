@@ -108,7 +108,7 @@ public class CheckWindow extends JFrame {
 				+ shipping
 				+ coupon
 				+ "<br> ---------------------------------"
-				+ "<br> Total = "+df.format(order.getPrice())
+				+ "<br> Total = "+df.format(order.getPrice())+" Eur"
 				+ "<br> ---------------------------------"
 				+ "<br> Order ID - "+order.getOrderID()
 				+ "</html>");
