@@ -33,8 +33,9 @@ public class CheckWindow extends JFrame {
 					
 					CheckWindow frameCheck = new CheckWindow();
 					frameCheck.setLocationRelativeTo(null);
-					frameCheck.setLocation(frameCheck.getX()+400,frameCheck.getY());
+					frameCheck.setLocation(frameCheck.getX()+420,frameCheck.getY());
 					frameCheck.setUndecorated(true);
+					frameCheck.setBackground(new Color(0, 0, 0, 0));
 					frameCheck.checkLabel(order);
 					frameCheck.setVisible(true);
 					
@@ -61,7 +62,7 @@ public class CheckWindow extends JFrame {
 
 		lblCheck = new JLabel("New label");
 		lblCheck.setForeground(new Color(87, 44, 0));
-		lblCheck.setFont(new Font("Arial", Font.BOLD, 13));
+		lblCheck.setFont(new Font("Arial", Font.BOLD, 14));
 		lblCheck.setBounds(30, 69, 266, 305);
 		contentPane.add(lblCheck);
 		
@@ -71,6 +72,7 @@ public class CheckWindow extends JFrame {
 		backgroundLbl.setBounds(10, 0, 308, 440);
 		contentPane.add(backgroundLbl);
 	}
+	
 	public void checkLabel(PizzaOrderS order) {
 		String stuffedCrust="";
 		String toppins="";
@@ -102,11 +104,11 @@ public class CheckWindow extends JFrame {
 				+ stuffedCrust
 				
 				+ "<br> ---------------------------------"
-				+ "<br> Amount = "+order.getAmount()
+				+ "<br> Amount = "+dfInt.format(order.getAmount())
 				+ shipping
 				+ coupon
 				+ "<br> ---------------------------------"
-				+ "<br> Total = "+order.getPrice()
+				+ "<br> Total = "+df.format(order.getPrice())
 				+ "<br> ---------------------------------"
 				+ "<br> Order ID - "+order.getOrderID()
 				+ "</html>");
