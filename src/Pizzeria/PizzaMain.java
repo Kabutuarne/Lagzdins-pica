@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -37,12 +38,18 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.text.MaskFormatter;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
 
 public class PizzaMain extends JFrame {
 
@@ -110,8 +117,18 @@ public class PizzaMain extends JFrame {
 	private JScrollPane scrollPane;
 	private JButton btnRemove;
 	public PizzaMain frame;
-
+	
 	public static void main(String[] args) {
+		try {
+		    UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
+		    for (Window window : Window.getWindows()) {
+		        SwingUtilities.updateComponentTreeUI(window);
+		    }
+		} catch (ClassNotFoundException | InstantiationException
+		        | IllegalAccessException | UnsupportedLookAndFeelException e) {
+		    e.printStackTrace();
+		}
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -146,6 +163,9 @@ public class PizzaMain extends JFrame {
 		mainMenuPanel.setLayout(null);
 		
 		JButton QuitBtn = new JButton("Quit");
+		QuitBtn.setBorder(new MatteBorder(2, 2, 2, 2, (Color) Color.RED));
+		QuitBtn.setBackground(Color.DARK_GRAY);
+		QuitBtn.setForeground(Color.RED);
 		QuitBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(ABORT);
@@ -156,6 +176,9 @@ public class PizzaMain extends JFrame {
 		mainMenuPanel.add(QuitBtn);
 		
 		JButton OrderBtn = new JButton("New Order");
+		OrderBtn.setBorder(new MatteBorder(2, 2, 2, 2, (Color) Color.ORANGE));
+		OrderBtn.setBackground(Color.DARK_GRAY);
+		OrderBtn.setForeground(Color.ORANGE);
 		OrderBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanels(orderPanel1);
@@ -166,6 +189,9 @@ public class PizzaMain extends JFrame {
 		mainMenuPanel.add(OrderBtn);
 		
 		JButton OrderHistoryBtn = new JButton("Order History");
+		OrderHistoryBtn.setBorder(new MatteBorder(2, 2, 2, 2, (Color) Color.ORANGE));
+		OrderHistoryBtn.setBackground(Color.DARK_GRAY);
+		OrderHistoryBtn.setForeground(Color.ORANGE);
 		OrderHistoryBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				updateJList();
@@ -684,6 +710,9 @@ public class PizzaMain extends JFrame {
 		
 		
 		JButton nextBtn = new JButton("Next");
+		nextBtn.setBorder(new MatteBorder(2, 2, 2, 2, (Color) Color.ORANGE));
+		nextBtn.setForeground(Color.ORANGE);
+		nextBtn.setBackground(Color.DARK_GRAY);
 		nextBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String crust="",filling="", sauce="", crustFilling="";
@@ -950,6 +979,9 @@ public class PizzaMain extends JFrame {
 		layeredPane.add(orderHistoryPanel, "name_4048253396953400");
 		
 		btnRemove = new JButton("Remove");
+		btnRemove.setBackground(Color.DARK_GRAY);
+		btnRemove.setForeground(Color.RED);
+		btnRemove.setBorder(new MatteBorder(2, 2, 2, 2, (Color) Color.RED));
 		btnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DefaultListModel<String> orderModelN = new DefaultListModel<>();
@@ -1002,6 +1034,9 @@ public class PizzaMain extends JFrame {
             }
         });
 		backBtn_1 = new JButton("Back");
+		backBtn_1.setBackground(Color.DARK_GRAY);
+		backBtn_1.setForeground(Color.ORANGE);
+		backBtn_1.setBorder(new MatteBorder(2, 2, 2, 2, (Color) Color.ORANGE));
 		backBtn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanels(mainMenuPanel);
@@ -1086,6 +1121,9 @@ public class PizzaMain extends JFrame {
 		orderPanel2.add(lblNumber);
 		
 		JButton nextBtn_1 = new JButton("Confirm");
+		nextBtn_1.setForeground(new Color(0, 255, 0));
+		nextBtn_1.setBackground(Color.DARK_GRAY);
+		nextBtn_1.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 255, 0)));
 		nextBtn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<PizzaOrderS> temp = new ArrayList<>();
@@ -1175,6 +1213,9 @@ public class PizzaMain extends JFrame {
 		orderPanel2.add(nextBtn_1);
 		
 		JButton backBtn = new JButton("Back");
+		backBtn.setForeground(Color.ORANGE);
+		backBtn.setBackground(Color.DARK_GRAY);
+		backBtn.setBorder(new MatteBorder(2, 2, 2, 2, (Color) Color.ORANGE));
 		backBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanels(orderPanel1);
