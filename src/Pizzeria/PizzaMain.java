@@ -3,25 +3,28 @@ package Pizzeria;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Random;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -35,18 +38,23 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.Dimension;
+import javax.swing.text.MaskFormatter;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.LineBorder;
 
 public class PizzaMain extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JLayeredPane layeredPane;
+	private int selectedI;
 	private JPanel contentPane;
 	private JPanel orderPanel1;
 	private JPanel orderHistoryPanel;
@@ -56,7 +64,7 @@ public class PizzaMain extends JFrame {
 	private JTextField textAddress1;
 	private JTextField textAddress2;
 	private JTextField txtCoupon;
-	private JTextField txtNumber;
+	private JFormattedTextField txtNumber;
 	private JLabel totalLbl;
 	private JSpinner spinner;
 	private JRadioButton deliverRdbtn;
@@ -98,7 +106,7 @@ public class PizzaMain extends JFrame {
 	private JLabel toppingLayer2lbl_6;
 	private JLabel toppingLayer3lbl_4;
 	private JLabel toppingLayer1lbl_3;
-	private ButtonGroup topping1Choice, topping2Choice,topping3Choice;
+	private ButtonGroup topping1Choice, topping2Choice, topping3Choice;
 	private JLabel lblOrderBackground2;
 	private JLabel historyLbl;
 	private JLabel backgroundLbl;
@@ -109,11 +117,18 @@ public class PizzaMain extends JFrame {
 	private JScrollPane scrollPane;
 	private JButton btnRemove;
 	public PizzaMain frame;
-
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
+		try {
+		    UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
+		    for (Window window : Window.getWindows()) {
+		        SwingUtilities.updateComponentTreeUI(window);
+		    }
+		} catch (ClassNotFoundException | InstantiationException
+		        | IllegalAccessException | UnsupportedLookAndFeelException e) {
+		    e.printStackTrace();
+		}
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -125,11 +140,9 @@ public class PizzaMain extends JFrame {
 				}
 			}
 		});
-	}
-	/**
-	 * Create the frame.
-	 */
-	public PizzaMain() {
+		}
+
+	public PizzaMain() { 
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -150,6 +163,9 @@ public class PizzaMain extends JFrame {
 		mainMenuPanel.setLayout(null);
 		
 		JButton QuitBtn = new JButton("Quit");
+		QuitBtn.setBorder(new MatteBorder(2, 2, 2, 2, (Color) Color.RED));
+		QuitBtn.setBackground(Color.DARK_GRAY);
+		QuitBtn.setForeground(Color.RED);
 		QuitBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(ABORT);
@@ -160,6 +176,9 @@ public class PizzaMain extends JFrame {
 		mainMenuPanel.add(QuitBtn);
 		
 		JButton OrderBtn = new JButton("New Order");
+		OrderBtn.setBorder(new MatteBorder(2, 2, 2, 2, (Color) Color.ORANGE));
+		OrderBtn.setBackground(Color.DARK_GRAY);
+		OrderBtn.setForeground(Color.ORANGE);
 		OrderBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanels(orderPanel1);
@@ -170,9 +189,31 @@ public class PizzaMain extends JFrame {
 		mainMenuPanel.add(OrderBtn);
 		
 		JButton OrderHistoryBtn = new JButton("Order History");
+		OrderHistoryBtn.setBorder(new MatteBorder(2, 2, 2, 2, (Color) Color.ORANGE));
+		OrderHistoryBtn.setBackground(Color.DARK_GRAY);
+		OrderHistoryBtn.setForeground(Color.ORANGE);
 		OrderHistoryBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				updateJList();
+				orderJList.clearSelection();
+				orders = FileFunctions.returnOrders("orderHistory");
+				orderModel.clear();
+				for(int i=0;i<orders.size();i++) {
+					orderModel.addElement((orders.get(i)).getName()+" "+(orders.get(i)).getSurname()+" "+(orders.get(i)).getOrderID());
+				}
+				if(orderModel.isEmpty()) {
+					scrollPane.setVisible(false);
+					orderJList.setVisible(false);
+					btnRemove.setVisible(false);
+					backgroundLbl.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/emptyBackgroundMain.png")));
+				}else {
+					btnRemove.setVisible(true);
+					orderJList.setVisible(true);
+					scrollPane.setVisible(true);
+					backgroundLbl.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/emptyBackgroundMain1.png")));
+					orderJList.setModel(orderModel);
+				}
+				switchPanels(orderHistoryPanel);
+			}
 		});
 		OrderHistoryBtn.setFont(new Font("Hot Slice", Font.PLAIN, 30));
 		OrderHistoryBtn.setBounds(170, 158, 199, 53);
@@ -192,6 +233,45 @@ public class PizzaMain extends JFrame {
 		});
 		orderPanel1.setLayout(null);
 		layeredPane.add(orderPanel1, "name_4048253304074500");
+		
+		JButton topping3Rm = new JButton("-");
+		topping3Rm.setForeground(Color.ORANGE);
+		topping3Rm.setBackground(Color.RED);
+		topping3Rm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				topping3Choice.clearSelection();
+				setTopping3("nothing");
+			}
+		});
+		topping3Rm.setFont(new Font("Hot Slice", Font.ITALIC, 30));
+		topping3Rm.setBounds(124, 409, 22, 14);
+		orderPanel1.add(topping3Rm);
+		
+		JButton topping2Rm = new JButton("-");
+		topping2Rm.setForeground(Color.ORANGE);
+		topping2Rm.setBackground(Color.RED);
+		topping2Rm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				topping2Choice.clearSelection();
+				setTopping2("nothing");
+			}
+		});
+		topping2Rm.setFont(new Font("Hot Slice", Font.ITALIC, 30));
+		topping2Rm.setBounds(124, 348, 22, 14);
+		orderPanel1.add(topping2Rm);
+		
+		JButton topping1Rm = new JButton("-");
+		topping1Rm.setForeground(Color.ORANGE);
+		topping1Rm.setBackground(Color.RED);
+		topping1Rm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				topping1Choice.clearSelection();
+				setTopping1("nothing");
+			}
+		});
+		topping1Rm.setFont(new Font("Hot Slice", Font.ITALIC, 30));
+		topping1Rm.setBounds(124, 287, 22, 14);
+		orderPanel1.add(topping1Rm);
 		
 		toppingLayer3lbl_4 = new JLabel("");
 		toppingLayer3lbl_4.setHorizontalAlignment(SwingConstants.CENTER);
@@ -292,7 +372,7 @@ public class PizzaMain extends JFrame {
 		pizzaLbl.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/EmptyPizza.png")));
 		pizzaLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		pizzaLbl.setForeground(new Color(255, 128, 0));
-		pizzaLbl.setBorder(BorderFactory.createLineBorder(Color.black));
+		pizzaLbl.setBorder(null);
 		pizzaLbl.setBackground(new Color(255, 128, 0));
 		pizzaLbl.setBounds(213, 235, 300, 300);
 		orderPanel1.add(pizzaLbl);
@@ -305,7 +385,7 @@ public class PizzaMain extends JFrame {
 		orderPanel1.add(yourPizzaLbl);
 		
 		JLabel crustLbl = new JLabel("Crust Type");
-		crustLbl.setForeground(UIManager.getColor("CheckBox.darkShadow"));
+		crustLbl.setForeground(Color.GRAY);
 		crustLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
 		crustLbl.setBounds(30, 43, 116, 33);
 		orderPanel1.add(crustLbl);
@@ -373,7 +453,7 @@ public class PizzaMain extends JFrame {
 		});
 		
 		JLabel toppingsChoiceLbl = new JLabel("Toppings");
-		toppingsChoiceLbl.setForeground(UIManager.getColor("CheckBox.darkShadow"));
+		toppingsChoiceLbl.setForeground(Color.GRAY);
 		toppingsChoiceLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
 		toppingsChoiceLbl.setBounds(30, 235, 148, 33);
 		orderPanel1.add(toppingsChoiceLbl);
@@ -535,7 +615,7 @@ public class PizzaMain extends JFrame {
 		topping3_3.setOpaque(false);
 		
 		JLabel sauceLbl = new JLabel("Sauce Type");
-		sauceLbl.setForeground(UIManager.getColor("CheckBox.darkShadow"));
+		sauceLbl.setForeground(Color.GRAY);
 		sauceLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
 		sauceLbl.setBounds(372, 43, 116, 33);
 		orderPanel1.add(sauceLbl);
@@ -640,13 +720,16 @@ public class PizzaMain extends JFrame {
 		orderPanel1.add(sizeSlider);
 		
 		JLabel sizeLbl = new JLabel("Pizza Size");
-		sizeLbl.setForeground(UIManager.getColor("CheckBox.darkShadow"));
+		sizeLbl.setForeground(Color.GRAY);
 		sizeLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
 		sizeLbl.setBounds(213, 191, 116, 33);
 		orderPanel1.add(sizeLbl);
 		
 		
 		JButton nextBtn = new JButton("Next");
+		nextBtn.setBorder(new MatteBorder(2, 2, 2, 2, (Color) Color.ORANGE));
+		nextBtn.setForeground(Color.ORANGE);
+		nextBtn.setBackground(Color.DARK_GRAY);
 		nextBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String crust="",filling="", sauce="", crustFilling="";
@@ -739,10 +822,10 @@ public class PizzaMain extends JFrame {
 		nextBtn.setBounds(30, 495, 116, 40);
 		orderPanel1.add(nextBtn);
 		
-		JLabel toppingsChoiceLbl1 = new JLabel("20 cents");
-		toppingsChoiceLbl1.setForeground(new Color(0, 0, 0));
+		JLabel toppingsChoiceLbl1 = new JLabel("0.20 Eur");
+		toppingsChoiceLbl1.setForeground(Color.DARK_GRAY);
 		toppingsChoiceLbl1.setFont(new Font("Hot Slice", Font.BOLD, 15));
-		toppingsChoiceLbl1.setBounds(119, 237, 61, 33);
+		toppingsChoiceLbl1.setBounds(116, 235, 61, 33);
 		orderPanel1.add(toppingsChoiceLbl1);
 		
 		JLabel lblOrderBackground1 = new JLabel("");
@@ -757,31 +840,31 @@ public class PizzaMain extends JFrame {
 		JLabel errorLbl_5 = new JLabel("");
 		errorLbl_5.setForeground(Color.RED);
 		errorLbl_5.setFont(new Font("Hot Slice", Font.BOLD, 20));
-		errorLbl_5.setBounds(358, 386, 21, 23);
+		errorLbl_5.setBounds(368, 386, 21, 23);
 		orderPanel2.add(errorLbl_5);
 		
 		JLabel errorLbl_1 = new JLabel("");
 		errorLbl_1.setForeground(Color.RED);
 		errorLbl_1.setFont(new Font("Hot Slice", Font.BOLD, 20));
-		errorLbl_1.setBounds(145, 235, 21, 23);
+		errorLbl_1.setBounds(155, 235, 21, 23);
 		orderPanel2.add(errorLbl_1);
 		
 		JLabel errorLbl_2 = new JLabel("");
 		errorLbl_2.setForeground(Color.RED);
 		errorLbl_2.setFont(new Font("Hot Slice", Font.BOLD, 20));
-		errorLbl_2.setBounds(358, 289, 21, 23);
+		errorLbl_2.setBounds(368, 289, 21, 23);
 		orderPanel2.add(errorLbl_2);
 		
 		JLabel errorLbl = new JLabel("");
 		errorLbl.setForeground(new Color(255, 0, 0));
 		errorLbl.setFont(new Font("Hot Slice", Font.BOLD, 20));
-		errorLbl.setBounds(145, 191, 21, 23);
+		errorLbl.setBounds(155, 191, 21, 23);
 		orderPanel2.add(errorLbl);
 		
 		JLabel errorLbl_3 = new JLabel("");
 		errorLbl_3.setForeground(Color.RED);
 		errorLbl_3.setFont(new Font("Hot Slice", Font.BOLD, 20));
-		errorLbl_3.setBounds(358, 334, 21, 23);
+		errorLbl_3.setBounds(368, 334, 21, 23);
 		orderPanel2.add(errorLbl_3);
 		ButtonGroup deliverChoice = new ButtonGroup();
 		
@@ -841,6 +924,8 @@ public class PizzaMain extends JFrame {
 		orderPanel2.add(saveInfo);
 		
 		txtName = new JTextField();
+		txtName.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(128, 0, 0)));
+		txtName.setBackground(new Color(250, 250, 210));
 		txtName.setToolTipText("");
 		txtName.setFont(new Font("Hot Slice", Font.PLAIN, 19));
 		txtName.setBounds(32, 191, 104, 23);
@@ -848,6 +933,8 @@ public class PizzaMain extends JFrame {
 		txtName.setColumns(10);
 		
 		textAddress2 = new JTextField();
+		textAddress2.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(128, 0, 0)));
+		textAddress2.setBackground(new Color(250, 250, 210));
 		textAddress2.setToolTipText("");
 		textAddress2.setFont(new Font("Hot Slice", Font.PLAIN, 19));
 		textAddress2.setColumns(10);
@@ -855,6 +942,8 @@ public class PizzaMain extends JFrame {
 		orderPanel2.add(textAddress2);
 		
 		txtSurname = new JTextField();
+		txtSurname.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(128, 0, 0)));
+		txtSurname.setBackground(new Color(250, 250, 210));
 		txtSurname.setToolTipText("");
 		txtSurname.setFont(new Font("Hot Slice", Font.PLAIN, 19));
 		txtSurname.setColumns(10);
@@ -862,6 +951,8 @@ public class PizzaMain extends JFrame {
 		orderPanel2.add(txtSurname);
 		
 		textAddress1 = new JTextField();
+		textAddress1.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(128, 0, 0)));
+		textAddress1.setBackground(new Color(250, 250, 210));
 		textAddress1.setToolTipText("");
 		textAddress1.setFont(new Font("Hot Slice", Font.PLAIN, 19));
 		textAddress1.setColumns(10);
@@ -869,6 +960,8 @@ public class PizzaMain extends JFrame {
 		orderPanel2.add(textAddress1);
 		
 		txtCoupon = new JTextField();
+		txtCoupon.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(128, 0, 0)));
+		txtCoupon.setBackground(new Color(250, 250, 210));
 		txtCoupon.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -882,11 +975,19 @@ public class PizzaMain extends JFrame {
 		txtCoupon.setBounds(32, 383, 91, 23);
 		orderPanel2.add(txtCoupon);
 		
-		txtNumber = new JTextField();
-		txtNumber.setToolTipText("");
-		txtNumber.setFont(new Font("Hot Slice", Font.PLAIN, 19));
-		txtNumber.setColumns(10);
-		txtNumber.setBounds(170, 385, 178, 23);
+		try {
+		    MaskFormatter mask = new MaskFormatter("########");
+		    txtNumber = new JFormattedTextField(mask);
+		    txtNumber.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(128, 0, 0)));
+		    txtNumber.setBackground(new Color(250, 250, 210));
+		    txtNumber.setToolTipText("");
+		    txtNumber.setFont(new Font("Hot Slice", Font.PLAIN, 19));
+		    txtNumber.setBounds(170, 385, 178, 23);
+		} catch (ParseException e) {
+		    e.printStackTrace();
+		}
+
+
 		orderPanel2.add(txtNumber);
 		
 		JLabel yourOrderLbl = new JLabel("Your Order");
@@ -897,7 +998,7 @@ public class PizzaMain extends JFrame {
 		orderPanel2.add(yourOrderLbl);
 		
 		JLabel deliverLbl = new JLabel("Delivery Option");
-		deliverLbl.setForeground(UIManager.getColor("CheckBox.darkShadow"));
+		deliverLbl.setForeground(Color.GRAY);
 		deliverLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
 		deliverLbl.setBounds(32, 49, 151, 33);
 		orderPanel2.add(deliverLbl);
@@ -907,34 +1008,62 @@ public class PizzaMain extends JFrame {
 		layeredPane.add(orderHistoryPanel, "name_4048253396953400");
 		
 		btnRemove = new JButton("Remove");
+		btnRemove.setBackground(Color.DARK_GRAY);
+		btnRemove.setForeground(Color.RED);
+		btnRemove.setBorder(new MatteBorder(2, 2, 2, 2, (Color) Color.RED));
 		btnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int i =orderJList.getSelectedIndex();
-				if(i!=-1) {
+				DefaultListModel<String> orderModelN = new DefaultListModel<>();
+				//int i = orderJList.getSelectedIndex();
+				if(selectedI!=-1) {
 					ArrayList<PizzaOrderS> orders = FileFunctions.returnOrders("orderHistory");
-		    		orders.remove(i);
+		    		orders.remove(selectedI);
 		    		FileFunctions.serializeOrders(orders, "orderHistory");
-		    		orders = FileFunctions.returnOrders("orderHistory"); 
+		    		orders = FileFunctions.returnOrders("orderHistory");
+
+		    		for(int j=0;j<orders.size();j++) {
+		    			orderModelN.addElement((orders.get(j)).getName()+" "+(orders.get(j)).getSurname()+" "+(orders.get(j)).getOrderID());
+		    		}
+		    		if(orderModelN.isEmpty()) {
+		    			scrollPane.setVisible(false);
+		    			orderJList.setVisible(false);
+		    			btnRemove.setVisible(false);
+		    			backgroundLbl.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/emptyBackgroundMain.png")));
+		    		}else {
+		    			btnRemove.setVisible(true);
+		    			orderJList.setVisible(true);
+		    			scrollPane.setVisible(true);
+		    			backgroundLbl.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/emptyBackgroundMain1.png")));
+		    		}
+		    		orderJList.setModel(orderModelN);
 				}
-				updateJList();
 			}
 		});
 		btnRemove.setFont(new Font("Hot Slice", Font.ITALIC, 30));
 		btnRemove.setBounds(205, 383, 128, 40);
 		orderJList = new JList<String>(orderModel);
+		orderJList.setValueIsAdjusting(true);
+		orderJList.setFont(new Font("Arial", Font.PLAIN, 15));
+		orderJList.setForeground(Color.WHITE);
+		orderJList.setSelectionForeground(Color.WHITE);
+		orderJList.setSelectionBackground(Color.ORANGE);
+		orderJList.setFixedCellHeight(44);
+		orderJList.setBackground(Color.BLACK);
 		orderJList.setSize(new Dimension(50, 50));
 		orderJList.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 		orderJList.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		orderHistoryPanel.add(btnRemove);
 		scrollPane = new JScrollPane(orderJList);
+		scrollPane.setForeground(Color.WHITE);
+		scrollPane.setBackground(Color.BLACK);
 		scrollPane.setFont(new Font("Hot Slice", Font.PLAIN, 11));
-		scrollPane.setLocation(75, 130);
-		scrollPane.setSize(388, 241);
+		scrollPane.setLocation(75, 133);
+		scrollPane.setSize(386, 235);
 		orderHistoryPanel.add(scrollPane);
 		orderJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		orderJList.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
-                int selectedI;
+
                 if (!e.getValueIsAdjusting()) {
                 	 selectedI = orderJList.getSelectedIndex();
                      System.out.println(orderJList.getSelectedIndex());
@@ -943,9 +1072,13 @@ public class PizzaMain extends JFrame {
             }
         });
 		backBtn_1 = new JButton("Back");
+		backBtn_1.setBackground(Color.DARK_GRAY);
+		backBtn_1.setForeground(Color.ORANGE);
+		backBtn_1.setBorder(new MatteBorder(2, 2, 2, 2, (Color) Color.ORANGE));
 		backBtn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanels(mainMenuPanel);
+				orderJList.clearSelection();
 			}
 		});
 		backBtn_1.setFont(new Font("Hot Slice", Font.ITALIC, 30));
@@ -989,7 +1122,9 @@ public class PizzaMain extends JFrame {
 		orderPanel2.add(lblAddrField1);
 		
 		spinner = new JSpinner();
+		spinner.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(128, 0, 0)));
 		spinner.setOpaque(false);
+		spinner.setBackground(new Color(250, 250, 210));
 		spinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				updateTotal(yummyPizza);
@@ -997,11 +1132,11 @@ public class PizzaMain extends JFrame {
 		});
 		spinner.setModel(new SpinnerNumberModel(1, 1, 12, 1));
 		spinner.setFont(new Font("Hot Slice", Font.PLAIN, 20));
-		spinner.setBounds(358, 45, 34, 33);
+		spinner.setBounds(362, 45, 34, 33);
 		orderPanel2.add(spinner);
 		
 		amountLbl = new JLabel("Pizza  Amount");
-		amountLbl.setForeground(UIManager.getColor("CheckBox.darkShadow"));
+		amountLbl.setForeground(Color.GRAY);
 		amountLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
 		amountLbl.setBounds(211, 48, 272, 33);
 		orderPanel2.add(amountLbl);
@@ -1027,6 +1162,9 @@ public class PizzaMain extends JFrame {
 		orderPanel2.add(lblNumber);
 		
 		JButton nextBtn_1 = new JButton("Confirm");
+		nextBtn_1.setForeground(new Color(0, 255, 0));
+		nextBtn_1.setBackground(Color.DARK_GRAY);
+		nextBtn_1.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 255, 0)));
 		nextBtn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<PizzaOrderS> temp = new ArrayList<>();
@@ -1116,6 +1254,9 @@ public class PizzaMain extends JFrame {
 		orderPanel2.add(nextBtn_1);
 		
 		JButton backBtn = new JButton("Back");
+		backBtn.setForeground(Color.ORANGE);
+		backBtn.setBackground(Color.DARK_GRAY);
+		backBtn.setBorder(new MatteBorder(2, 2, 2, 2, (Color) Color.ORANGE));
 		backBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanels(orderPanel1);
@@ -1141,7 +1282,7 @@ public class PizzaMain extends JFrame {
 		lblBackgroundMain.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/backgroundMain.png")));
 		lblBackgroundMain.setBounds(0, 0, 534, 661);
 		contentPane.add(lblBackgroundMain);
-	}
+		}
 	public void switchPanels(JPanel panel) {
 		layeredPane.removeAll();
 		layeredPane.add(panel);
@@ -1194,6 +1335,7 @@ public class PizzaMain extends JFrame {
 		toppingLayer2lbl_5.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
 		toppingLayer2lbl_6.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
 	}
+
 	public void setTopping3(String topping) {
 		toppingLayer3lbl.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
 		toppingLayer3lbl_1.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
@@ -1201,27 +1343,5 @@ public class PizzaMain extends JFrame {
 		toppingLayer3lbl_3.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
 		toppingLayer3lbl_4.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
 		toppingLayer3lbl_5.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/"+topping+".png")));
-	}
-	public void updateJList() {
-		orders = FileFunctions.returnOrders("orderHistory");
-		orderModel.clear();
-		
-		for(int i=0;i<orders.size();i++) {
-			orderModel.addElement((orders.get(i)).getName());
-		}
-		if (orderModel.isEmpty()) {
-			backgroundLbl.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/emptyBackgroundMain.png")));
-			scrollPane.setVisible(false);
-			btnRemove.setVisible(false);
-
-		}else {
-			backgroundLbl.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/emptyBackgroundMain1.png")));
-			scrollPane.setVisible(true);
-			btnRemove.setVisible(true);
-
-		}
-		orderJList.setModel(orderModel);
-		switchPanels(orderHistoryPanel);
-	}
 	}
 }
