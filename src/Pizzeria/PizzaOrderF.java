@@ -6,9 +6,9 @@ public class PizzaOrderF extends PizzaOrderS { // pilns order ar adresi
 	 */
 	private static final long serialVersionUID = 2271856762748497292L;
 	String addrLine1, addrLine2;
-	public PizzaOrderF(Pizza pizza, String addrLine1, String addrLine2, String name, String surname, String phone,int amount, String orderID, boolean coupon, Double price) {
+	public PizzaOrderF(Pizza pizza, String addrLine1, String addrLine2, String name, String surname, String phone,int amount, String orderID, boolean coupon, Double price, String date) {
 		
-		super(pizza, name, surname, phone, amount, orderID, coupon, price);
+		super(pizza, name, surname, phone, amount, orderID, coupon, price,date);
 		this.addrLine1=addrLine1;
 		this.addrLine2=addrLine2;
 	}

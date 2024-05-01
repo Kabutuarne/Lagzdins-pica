@@ -33,6 +33,9 @@ public class Pizza implements Serializable {
 		
 		
 		//getter
+		public String getFilling() {
+			return "";
+		}
 		public String getCrust() {
 			return crust;
 		}

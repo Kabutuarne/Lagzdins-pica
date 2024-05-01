@@ -8,13 +8,13 @@ public class PizzaOrderS implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	String name, surname, phone, orderID;
+	String name, surname, phone, orderID, date;
 	Pizza pizza;
 	int amount;
 	boolean coupon;
 	Double price;
 	
-	public PizzaOrderS(Pizza pizza, String name, String surname, String phone,int amount, String orderID, boolean coupon, Double price) {
+	public PizzaOrderS(Pizza pizza, String name, String surname, String phone,int amount, String orderID, boolean coupon, Double price, String date) {
 		this.name=name;
 		this.surname=surname;
 		this.phone=phone;
@@ -23,6 +23,7 @@ public class PizzaOrderS implements Serializable{
 		this.pizza=pizza;
 		this.amount=amount;
 		this.price=price;
+		this.date = date;
 	}
 	//setter
 	public void setPrice(Double priceN) {
@@ -74,4 +75,8 @@ public class PizzaOrderS implements Serializable{
 	public Double getPrice() {
 		return price;
 	}
+	public String getDate() {
+		return date;
+	}
+	
 }

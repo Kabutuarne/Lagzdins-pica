@@ -12,9 +12,11 @@ public class StuffedCrustPizza extends Pizza {
 		super(crust, sauce, topping, diameter);
 		this.filling = filling;
 	}
+	@Override
 	public String getFilling() {
 		return filling;
 	}
+	
 	public void setFilling(String nFill) {
 		filling=nFill;
 	}
