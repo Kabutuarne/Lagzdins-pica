@@ -13,6 +13,7 @@ import java.awt.Dialog.ModalExclusionType;
 import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class CheckWindow extends JFrame {
 
@@ -61,6 +62,7 @@ public class CheckWindow extends JFrame {
 		contentPane.setLayout(null);
 
 		lblCheck = new JLabel("New label");
+		lblCheck.setVerticalAlignment(SwingConstants.TOP);
 		lblCheck.setForeground(new Color(87, 44, 0));
 		lblCheck.setFont(new Font("Arial", Font.BOLD, 14));
 		lblCheck.setBounds(30, 69, 266, 305);
@@ -78,35 +80,69 @@ public class CheckWindow extends JFrame {
 		String toppins="";
 		String coupon="";
 		String shipping="";
-		
+		Double crustPrice,saucePrice,pizzaPrice, pizzaPP;
+		boolean stuffed=false;
+		if(order.getPizza().getDiameter()==33) {
+			pizzaPrice=9.0;
+		}else if(order.getPizza().getDiameter()==27) {
+			pizzaPrice=7.0;
+		}else {
+			pizzaPrice=5.0;
+		}
+		pizzaPP=pizzaPrice;
 		String[] toppings=order.getPizza().getTopping();
 		for (int i=0; i<toppings.length;i++) {
 			toppins+="<br>"+toppings[i]+" = 0.20 Eur ";
+			pizzaPrice+=0.2;
 		}
 		if(order.getPizza().getClass()==StuffedCrustPizza.class) {
 			stuffedCrust="<br>   -Filling: "+order.getPizza().getFilling();
 		}
 		if(order.isCoupon()) {
-			coupon="<br> 10% off";
+			coupon="<br> 10% off (shipping not covered)";
 		}
 		if(order.getClass()==PizzaOrderF.class) {
 			shipping="<br> Shipping: 2.20 Eur";
 		}
+		if(order.getPizza().getCrust().equals("Thick")) {
+			crustPrice=0.45;
+		}else if(order.getPizza().getCrust().equals("Thin")) {
+			crustPrice=0.30;
+		}else {
+			stuffed=true;
+			crustPrice=0.60;
+		}
+		String crust = "<br>"+order.getPizza().getCrust()+" crust: "+df.format(crustPrice)+" Eur\r\n";
+		
+		if(stuffed) {
+			crust+="  - Filling "+order.getPizza().getFilling();
+		}
+		
+		if(order.getPizza().getSauce().equals("Tomato")) {
+			saucePrice=0.20;
+		}else if(order.getPizza().getSauce().equals("Pesto")) {
+			saucePrice=0.20;
+		}else {
+			saucePrice=0.30;
+		}
+		String sauce="<br>"+order.getPizza().getSauce()+" sauce: "+df.format(saucePrice)+" Eur\r\n";
+		pizzaPrice+=crustPrice;
+		pizzaPrice+=saucePrice;
 		lblCheck.setText(
 				"<html>"
-				+ "<br> date: "+ order.getDate()
+				+ "<br> Date: "+ order.getDate()
 				+ "<br> Recipient: "+order.getName()+" "+order.getSurname()
 				+ "<br> ---------------------------------"
-				+ "<br>Pizza size: "+order.getPizza().getDiameter()+" cm "
+				+ "<br>Pizza size: "+order.getPizza().getDiameter()+" cm "+df.format(pizzaPP)
 				+ toppins
-				+ "<br> Sauce: "+order.getPizza().getSauce()
-				+ "<br> Crust: "+order.getPizza().getCrust()
+				+ "<br> Sauce: "+order.getPizza().getSauce()+" "+df.format(saucePrice)+" Eur"
+				+ "<br> Crust: "+order.getPizza().getCrust()+" "+df.format(crustPrice)+" Eur"
 				+ stuffedCrust
-				
+
 				+ "<br> ---------------------------------"
-				+ "<br> Amount = "+dfInt.format(order.getAmount())
-				+ shipping
+				+ "<br> Pizza price: "+df.format(pizzaPrice)+" Eur  "+dfInt.format(order.getAmount())+"x = "+df.format(pizzaPrice*order.getAmount())+" Eur"
 				+ coupon
+				+ shipping
 				+ "<br> ---------------------------------"
 				+ "<br> Total = "+df.format(order.getPrice())+" Eur"
 				+ "<br> ---------------------------------"

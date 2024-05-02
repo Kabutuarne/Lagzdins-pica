@@ -117,8 +117,19 @@ public class PizzaMain extends JFrame {
 	private JScrollPane scrollPane;
 	private JButton btnRemove;
 	public PizzaMain frame;
+	private JLabel lblPrice_2;
+	private JLabel lblPrice_3;
+	private JLabel lblPrice_4;
+	private JLabel lblPrice_5;
+	private JLabel lblPrice_6;
+	private JLabel lblPrice_7;
+	private JLabel lblPrice_8;
+	private JLabel lblPrice_9;
+	private JLabel lblPrice_10;
+	private JLabel lblPrice_11;
 	
 	public static void main(String[] args) {
+		
 		try {
 		    UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
 		    for (Window window : Window.getWindows()) {
@@ -128,7 +139,7 @@ public class PizzaMain extends JFrame {
 		        | IllegalAccessException | UnsupportedLookAndFeelException e) {
 		    e.printStackTrace();
 		}
-
+		FileFunctions.downloadFonts();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -243,6 +254,81 @@ public class PizzaMain extends JFrame {
 				setTopping3("nothing");
 			}
 		});
+		
+		JSlider sizeSlider = new JSlider();
+		sizeSlider.setOpaque(false);
+		sizeSlider.setFont(new Font("Hot Slice", Font.PLAIN, 18));
+		sizeSlider.setPaintLabels(true);
+		sizeSlider.setMajorTickSpacing(6);
+		sizeSlider.setPaintTicks(true);
+		sizeSlider.setPaintTrack(false);
+		sizeSlider.setValue(21);
+		sizeSlider.setSnapToTicks(true);
+		sizeSlider.setMaximum(33);
+		sizeSlider.setMinorTickSpacing(6);
+		sizeSlider.setMinimum(21);
+		sizeSlider.setBounds(335, 165, 148, 59);
+		orderPanel1.add(sizeSlider);
+		
+		lblPrice_10 = new JLabel("");
+		lblPrice_10.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/PriceTags/7EurTag1.png")));
+		lblPrice_10.setBounds(386, 154, 45, 45);
+		orderPanel1.add(lblPrice_10);
+		
+		lblPrice_11 = new JLabel("");
+		lblPrice_11.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/PriceTags/9EurTag1.png")));
+		lblPrice_11.setBounds(456, 154, 45, 45);
+		orderPanel1.add(lblPrice_11);
+		
+		lblPrice_9 = new JLabel("");
+		lblPrice_9.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/PriceTags/5EurTag1.png")));
+		lblPrice_9.setBounds(315, 154, 45, 45);
+		orderPanel1.add(lblPrice_9);
+		
+		lblPrice_8 = new JLabel("");
+		lblPrice_8.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/PriceTags/20centTag2.png")));
+		lblPrice_8.setBounds(147, 341, 45, 23);
+		orderPanel1.add(lblPrice_8);
+		
+		lblPrice_7 = new JLabel("");
+		lblPrice_7.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/PriceTags/20centTag1.png")));
+		lblPrice_7.setBounds(147, 390, 45, 45);
+		orderPanel1.add(lblPrice_7);
+		
+		lblPrice_6 = new JLabel("");
+		lblPrice_6.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/PriceTags/20centTag1.png")));
+		lblPrice_6.setBounds(147, 264, 45, 45);
+		orderPanel1.add(lblPrice_6);
+		
+		lblPrice_5 = new JLabel("");
+		lblPrice_5.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/PriceTags/30centTag.png")));
+		lblPrice_5.setBounds(489, 143, 45, 45);
+		orderPanel1.add(lblPrice_5);
+		
+		lblPrice_4 = new JLabel("");
+		lblPrice_4.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/PriceTags/20centTag2.png")));
+		lblPrice_4.setBounds(489, 87, 45, 45);
+		orderPanel1.add(lblPrice_4);
+		
+		lblPrice_3 = new JLabel("");
+		lblPrice_3.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/PriceTags/20centTag1.png")));
+		lblPrice_3.setBounds(489, 62, 45, 45);
+		orderPanel1.add(lblPrice_3);
+		
+		lblPrice_2 = new JLabel("");
+		lblPrice_2.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/PriceTags/60centTag1.png")));
+		lblPrice_2.setBounds(147, 142, 45, 45);
+		orderPanel1.add(lblPrice_2);
+		
+		JLabel lblPrice_1 = new JLabel("");
+		lblPrice_1.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/PriceTags/30centTag2.png")));
+		lblPrice_1.setBounds(147, 87, 45, 45);
+		orderPanel1.add(lblPrice_1);
+		
+		JLabel lblPrice = new JLabel("");
+		lblPrice.setIcon(new ImageIcon(PizzaMain.class.getResource("/Resources/PriceTags/45centTag2.png")));
+		lblPrice.setBounds(147, 62, 45, 45);
+		orderPanel1.add(lblPrice);
 		topping3Rm.setFont(new Font("Hot Slice", Font.ITALIC, 30));
 		topping3Rm.setBounds(124, 409, 22, 14);
 		orderPanel1.add(topping3Rm);
@@ -704,21 +790,6 @@ public class PizzaMain extends JFrame {
 		topping3Choice.add(topping3_2);
 		topping3Choice.add(topping3_3);
 		
-		JSlider sizeSlider = new JSlider();
-		sizeSlider.setOpaque(false);
-		sizeSlider.setFont(new Font("Hot Slice", Font.PLAIN, 18));
-		sizeSlider.setPaintLabels(true);
-		sizeSlider.setMajorTickSpacing(6);
-		sizeSlider.setPaintTicks(true);
-		sizeSlider.setPaintTrack(false);
-		sizeSlider.setValue(21);
-		sizeSlider.setSnapToTicks(true);
-		sizeSlider.setMaximum(33);
-		sizeSlider.setMinorTickSpacing(6);
-		sizeSlider.setMinimum(21);
-		sizeSlider.setBounds(335, 165, 148, 59);
-		orderPanel1.add(sizeSlider);
-		
 		JLabel sizeLbl = new JLabel("Pizza Size");
 		sizeLbl.setForeground(Color.GRAY);
 		sizeLbl.setFont(new Font("Hot Slice", Font.BOLD, 25));
@@ -822,10 +893,10 @@ public class PizzaMain extends JFrame {
 		nextBtn.setBounds(30, 495, 116, 40);
 		orderPanel1.add(nextBtn);
 		
-		JLabel toppingsChoiceLbl1 = new JLabel("0.20 Eur");
+		JLabel toppingsChoiceLbl1 = new JLabel("");
 		toppingsChoiceLbl1.setForeground(Color.DARK_GRAY);
 		toppingsChoiceLbl1.setFont(new Font("Hot Slice", Font.BOLD, 15));
-		toppingsChoiceLbl1.setBounds(116, 235, 61, 33);
+		toppingsChoiceLbl1.setBounds(116, 235, 45, 45);
 		orderPanel1.add(toppingsChoiceLbl1);
 		
 		JLabel lblOrderBackground1 = new JLabel("");
@@ -1151,7 +1222,7 @@ public class PizzaMain extends JFrame {
 		totalLbl.setForeground(new Color(255, 255, 255));
 		totalLbl.setVerticalAlignment(SwingConstants.TOP);
 		totalLbl.setHorizontalAlignment(SwingConstants.LEFT);
-		totalLbl.setFont(new Font("Hot Slice", Font.PLAIN, 16));
+		totalLbl.setFont(new Font("Hot Slice", Font.PLAIN, 13));
 		totalLbl.setBounds(211, 89, 260, 159);
 		orderPanel2.add(totalLbl);
 		
@@ -1170,10 +1241,10 @@ public class PizzaMain extends JFrame {
 				ArrayList<PizzaOrderS> temp = new ArrayList<>();
 				boolean aizpildits = true;
 				String name="",surname="",addr1="",addr2="",pnumber="",orderID="";
-				boolean coupon=false;
+				boolean coupon=true;
 				System.out.print("|"+txtCoupon.getText()+"|");
 				if(txtCoupon.getText().isBlank())
-					coupon=true;
+					coupon=false;
 				if(txtName.getText().isBlank()) {
 					aizpildits = false;
 					errorLbl.setText("!");
@@ -1291,7 +1362,8 @@ public class PizzaMain extends JFrame {
 	}
 	public void updateTotal(Pizza pizza) {
 		total=0.0;
-		Double pizzaPrice,pizzaToppingsPrice=0.0,shippingPrice=2.20,multiplier,coupon=0.10; //5, 7, 9
+		boolean stuffed=false;
+		Double pizzaPrice,pizzaSizeP,pizzaToppingsPrice=0.0,shippingPrice=2.20,multiplier,coupon=0.10, crustPrice, saucePrice; //5, 7, 9
 		multiplier = ((Number) spinner.getValue()).doubleValue();
 		System.out.print(pizza.getDiameter());
 		if(pizza.getDiameter()==33) {
@@ -1301,22 +1373,70 @@ public class PizzaMain extends JFrame {
 		}else {
 			pizzaPrice=5.0;
 		}
+		pizzaSizeP=pizzaPrice;
+		if(pizza.getCrust().equals("Thick")) {
+			crustPrice=0.45;
+		}else if(pizza.getCrust().equals("Thin")) {
+			crustPrice=0.30;
+		}else {
+			stuffed=true;
+			crustPrice=0.60;
+		}
+		String crust = "<br>"+pizza.getCrust()+" crust: "+df.format(crustPrice)+" Eur\r\n";
+		
+		if(stuffed) {
+			crust+="  - Filling "+pizza.getFilling();
+		}
+		
+		if(pizza.getSauce().equals("Tomato")) {
+			saucePrice=0.20;
+		}else if(pizza.getSauce().equals("Pesto")) {
+			saucePrice=0.20;
+		}else if(pizza.getSauce().equals("Alfredo")){
+			saucePrice=0.30;
+		}else {
+			saucePrice=0.0;
+			System.out.print(pizza.getSauce());
+		}
+		String sauce="<br>"+pizza.getSauce()+" sauce: "+df.format(saucePrice)+" Eur\r\n";
+		pizzaPrice+=crustPrice;
+		pizzaPrice+=saucePrice;
 		String toppins="", shipping="<br>Shipping: "+df.format(shippingPrice)+" Eur\r\n", couponTxt="";
 		String[] toppings=pizza.getTopping();
+		Double toppinsP=0.0;
+		toppins="<br>";
 		for (int i=0; i<toppings.length;i++) {
-			toppins+="<br>"+toppings[i]+" = 0.20 Eur "+dfInt.format(multiplier)+"x = "+df.format(multiplier*0.20)+" Eur\r\n";
-			pizzaToppingsPrice+=0.20;
+			toppins+=toppings[i];
+			if(i!=toppings.length)
+				toppins+=",";
+			pizzaPrice+=0.20;
+			toppinsP+=0.20;
 		}
-		total=(pizzaToppingsPrice+pizzaPrice)*multiplier;
+		toppins+= ": "+df.format(toppinsP)+" Eur";
+		total=(pizzaPrice)*multiplier;
 		if(!txtCoupon.getText().isBlank()) {
-			couponTxt="<br>Coupon \""+txtCoupon.getText()+"\" 10% off\r\n";
+			couponTxt="<br>Coupon \""+txtCoupon.getText()+"\" 10% off (shipping not covered)\r\n";
 			total=total-(total*coupon);
 		}
 		if(!deliverRdbtn1.isSelected())
-			totalLbl.setText("<html>\r\n"+pizza.getDiameter()+"cm Pizza: "+(df.format(pizzaPrice))+" Eur "+dfInt.format(multiplier)+"x = "+df.format(multiplier*pizzaPrice)+" Eur"+"\r\n"+toppins+couponTxt+"<br>----------\r\n<br>Total: "+df.format(total)+"\r\n</html>");
+			totalLbl.setText("<html>\r\n"+pizza.getDiameter()+"cm Pizza: "+(df.format(pizzaSizeP))+" Eur "
+					+toppins+crust+sauce+"<br>--------------------\r\n"
+					+ "<br> Pizza price: "+pizzaPrice+" "+dfInt.format(multiplier)+"x = "+df.format(multiplier*pizzaPrice)+" Eur"
+					+ ""
+					+ couponTxt
+					+ ""
+					+"<br>--------------------"
+					+ "<br>Total: "+df.format(total)+" Eur</html>");
 		else {
 			total+=shippingPrice;
-			totalLbl.setText("<html>\r\n"+pizza.getDiameter()+"cm Pizza: "+df.format(pizzaPrice)+" Eur "+dfInt.format(multiplier)+"x = "+df.format(multiplier*pizzaPrice)+" Eur"+"\r\n"+toppins+shipping+couponTxt+"<br>----------\r\n<br>Total: "+df.format(total)+"\r\n</html>");
+			totalLbl.setText("<html>\r\n"+pizza.getDiameter()+"cm Pizza: "+(df.format(pizzaSizeP))+" Eur "
+					+toppins+crust+sauce+"<br>--------------------\r\n"
+					+ "<br> Pizza price: "+df.format(pizzaPrice)+" "+dfInt.format(multiplier)+"x = "+df.format(multiplier*pizzaPrice)+" Eur"
+					+ ""
+					+ couponTxt
+					+ shipping
+					+"<br>--------------------"
+					+ "<br>Total: "+df.format(total)+" Eur</html>");
 			}
 		}
 	public void setTopping1(String topping) {
